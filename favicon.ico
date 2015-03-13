@@ -14,8 +14,5 @@ define('LIB_PATH', BASE_PATH . '/lib');
 
 include LIB_PATH . DS . 'bootstrap.php';
 
-Bootstrap::run();
-
-
 
 
