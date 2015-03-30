@@ -1,8 +1,9 @@
 <?php
 
-class Index {
+class Core_Controller_Index extends Core_Controller_Abstract {
 
-    public function index() {
-
+    public function indexAction() {
+        echo "test";
     }
 }
+

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config>
+    <route>
+        <uri>users</uri>
+        <dir>app/users</dir>
+    </route>
+</config>
