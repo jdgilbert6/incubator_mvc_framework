@@ -6,16 +6,17 @@ class Core_Request extends Core_Object {
     protected $_controller;
     protected $_method;
 
+    static $instance = null;
+
     private function __construct() {}
 
     public static function getInstance() {
 
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new static();
+        if (null === self::$instance) {
+            self::$instance = new static();
         }
 
-        return $instance;
+        return self::$instance;
     }
 
     /**

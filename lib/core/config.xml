@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <routers>
+        <standard>
+            <instance>Core_Controller_Router_Standard</instance>
+        </standard>
+        <default>
+            <instance>Core_Controller_Router_Default</instance>
+        </default>
+    </routers>
+</config>

@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <config>
-    <route>
-        <uri>users</uri>
-        <dir>app/users</dir>
-    </route>
+    <controller>
+        <users>
+            <uri>login</uri>
+        </users>
+    </controller>
 </config>
+

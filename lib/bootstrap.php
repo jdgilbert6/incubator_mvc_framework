@@ -11,12 +11,12 @@ final class Bootstrap{
 
     public static function run(){
 
+        self::getConfig();
         self::buildRequest();
         self::getRequest()
             ->set('uri', $_SERVER['REQUEST_URI'])
             ->set('is_dispatched', false);
         self::matchRoute();
-        self::loadXml();
 
         //@todo build response object
     }
@@ -24,6 +24,7 @@ final class Bootstrap{
     public static function matchRoute(){
         $frontController = new Core_Controller_Front();
 
+        //@todo Add via config.xml via Core_Config not hardcoded..
         $frontController->addRoutes(new Core_Controller_Router_Standard());
         $frontController->addRoutes(new Core_Controller_Router_Default());
 
@@ -43,13 +44,7 @@ final class Bootstrap{
         return static::$_request;
     }
 
-    public static function loadXml(){
-        $xmlFiles = glob('app*/*/config.xml', GLOB_NOSORT);
-        foreach($xmlFiles as $xmlFile) {
-            if(file_exists($xmlFile)) {
-                return simplexml_load_file($xmlFile);
-            }
-
-        }
+    public static function getConfig(){
+        return Core_Config::getInstance();
     }
 }

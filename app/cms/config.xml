@@ -1,11 +1,8 @@
 <?xml version="1.0"?>
 <config>
-    <route>
-        <uri>home</uri>
-        <dir>app/cms/controller/Home.php</dir>
-    </route>
-    <route>
-        <uri>login</uri>
-        <dir>app/cms/controller/Login.php</dir>
-    </route>
+    <controller>
+        <cms>
+            <uri>home</uri>
+        </cms>
+    </controller>
 </config>

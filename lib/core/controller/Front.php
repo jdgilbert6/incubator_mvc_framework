@@ -20,9 +20,8 @@ class Core_Controller_Front {
                 }
             }
         }
-        while(!Bootstrap::getRequest()->get('is_dispatched') && $i > 100){
-            $notFound = new Core_Controller_Router_Default();
-            return $notFound;
+        if(!Bootstrap::getRequest()->get('is_dispatched')){
+            return new Core_Controller_Router_Default();
         }
     }
 }
