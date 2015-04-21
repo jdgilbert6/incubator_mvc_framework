@@ -1,6 +1,6 @@
 <?php
 
-class Core_Controller_Front {
+class Core_Controller_Front extends Core_Controller_Abstract {
 
     protected $_routes = array();
 
@@ -14,14 +14,30 @@ class Core_Controller_Front {
         $i = 0;
         while(!Bootstrap::getRequest()->get('is_dispatched') && $i < 100){
             $i++;
-            foreach($this->_routes as $route){
+             foreach($this->_routes as $route){
                 if($route->matchRequest(Bootstrap::getRequest())){
                     break;
                 }
             }
         }
         if(!Bootstrap::getRequest()->get('is_dispatched')){
-            return new Core_Controller_Router_Default();
+            $defaultRouter = new Core_Controller_Router_Default();
+            $defaultRouter->matchRequest(Bootstrap::getRequest());
         }
+    }
+
+    public function getUrl() {
+
+        $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] : 'https://'.$_SERVER["SERVER_NAME"];
+        $url .= $_SERVER["REQUEST_URI"];
+        return $url;
+    }
+
+    public function parseUrl() {
+
+        $url = $this->getUrl();
+
+        $parsed = parse_url($url);
+
     }
 }
