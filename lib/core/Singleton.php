@@ -1,18 +1,25 @@
 <?php
 
-class Singleton {
+class Core_Singleton {
 
-    static $instance = null;
+//    static $instance = null;
 
-    private function __construct() {}
+    protected function __construct() {}
 
     public static function getInstance() {
 
-        if (null === self::$instance) {
-            self::$instance = new static();
+//        if (null === self::$instance) {
+//            self::$instance = new static();
+//        }
+//
+//        return self::$instance;
+
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new static();
         }
 
-        return self::$instance;
+        return $instance;
     }
 
 }
