@@ -1,11 +1,14 @@
 <?xml version="1.0"?>
 <config>
-    <routers>
+    <routes>
         <standard>
-            <instance>Core_Controller_Router_Standard</instance>
+            <module>Core_Controller_Router_Standard</module>
         </standard>
-        <default>
-            <instance>Core_Controller_Router_Default</instance>
-        </default>
-    </routers>
+    </routes>
+    <database>
+        <host>localhost</host>
+        <dbname>users</dbname>
+        <user>root</user>
+        <password>password</password>
+    </database>
 </config>
