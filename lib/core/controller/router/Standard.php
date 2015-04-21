@@ -1,6 +1,6 @@
 <?php
 
-class Core_Controller_Router_Standard implements Core_Controller_Router_Interface{
+class Core_Controller_Router_Standard implements Core_Controller_Router_Interface {
 
     const CONTROLLER_DIRECTORY = 'Controller';
 
@@ -9,7 +9,7 @@ class Core_Controller_Router_Standard implements Core_Controller_Router_Interfac
     protected $_method     = 'indexAction';
     protected $_params     = array();
 
-    public function matchRequest(Core_Request $request){
+    public function matchRequest(Core_Request $request) {
 
         if(!$request->get('uri_parsed')){
             $this->parseUri($request->get('uri'));
@@ -54,7 +54,13 @@ class Core_Controller_Router_Standard implements Core_Controller_Router_Interfac
             $uri = explode(DS, $uri);
 
             if(isset($uri[0]) && !empty($uri[0])) {
-                $this->_module = ucwords(strtolower($uri[0]));
+                $uriArray = Core_Config::getInstance()->getFrontNamesArray();
+
+                if(array_key_exists($uri[0], $uriArray)){
+                    $this->_module = ucwords(strtolower($uriArray[$uri[0]]));
+                } else if(isset($uri[0])) {
+                    $this->_module = ucwords(strtolower($uri[0]));
+                }
 
                 if(isset($uri[1])) {
                     $this->_controller = ucwords(strtolower($uri[1]));
@@ -68,9 +74,5 @@ class Core_Controller_Router_Standard implements Core_Controller_Router_Interfac
             return;
 
         }
-
     }
-
-
-
 }
