@@ -13,13 +13,13 @@ class Core_Singleton {
 //        }
 //
 //        return self::$instance;
-
         static $instance = null;
         if (null === $instance) {
             $instance = new static();
         }
 
         return $instance;
+
     }
 
 }
