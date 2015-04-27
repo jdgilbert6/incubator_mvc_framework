@@ -1,11 +1,10 @@
 <?php
 
-class Core_Response extends Core_Object {
+class Core_Response extends Core_Singleton {
 
     protected $_headers;
     protected $_content;
 
-    public function __construct() {}
 
     public function getHeaders() {
         return $this->_headers;
