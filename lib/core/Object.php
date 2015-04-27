@@ -1,7 +1,9 @@
 <?php
 
-class Core_Object{
+class Core_Object extends Core_Singleton {
+
     protected $_data = array();
+
     public function __call($methodName, $params = null)
     {
         if($methodName == 'set' && count($params) == 2)
