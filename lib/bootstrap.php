@@ -13,7 +13,7 @@ final class Bootstrap {
 
     public static function run() {
 
-        self::getModel('db/connection');
+//        self::getModel('db/connection');
         self::buildRequest();
         self::getRequest()
             ->set('uri', $_SERVER['REQUEST_URI'])
