@@ -1,10 +1,8 @@
 <?php
 
-class Core_Model_Abstract extends Core_Singleton{
+class Core_Model_Abstract extends Core_Singleton {
 
     protected $_data = array();
-
-    public function __construct() {}
 
     public function __call($methodName, $params = null) {
 
