@@ -35,15 +35,8 @@ final class Bootstrap {
             $routerInstance = new $routerClass();
             $front->addRoutes($routerInstance);
         }
-//        $front->addRoutes(new Core_Controller_Router_Default());
-
         $front->dispatch();
     }
-
-//    public static function loadDefault() {
-//        $default = new Core_Controller_Router_Default();
-//        $default->matchRequest(Core_Request::getInstance());
-//    }
 
     public static function buildRequest() {
         static::$_request = Core_Request::getInstance();

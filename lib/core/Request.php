@@ -1,11 +1,25 @@
 <?php
 
-class Core_Request extends Core_Singleton {
+class Core_Request {
+
+    static $instance = null;
 
     protected $_module;
     protected $_controller;
     protected $_method;
     protected $_data = array();
+
+
+    private function __construct() {}
+
+    public static function getInstance() {
+
+        if (null === self::$instance) {
+            self::$instance = new static();
+        }
+
+        return self::$instance;
+    }
 
     public function __call($methodName, $params = null) {
 

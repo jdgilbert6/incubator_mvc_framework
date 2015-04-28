@@ -1,6 +1,10 @@
 <?php
 
-class Db_Model_Connection extends Core_Singleton {
+class Db_Model_Connection {
+
+    static $instance = null;
+
+    private function __construct() {}
 
     public static function getInstance() {
 

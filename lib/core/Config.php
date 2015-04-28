@@ -1,11 +1,22 @@
 <?php
 
-class Core_Config extends Core_Singleton {
+class Core_Config {
+
 
     static $xml = null;
     static $frontNames = null;
 
-    protected function __construct() {
+    static $instance = null;
+
+    private function __construct() {}
+
+    public static function getInstance() {
+
+        if (null === self::$instance) {
+            self::$instance = new static();
+        }
+
+        return self::$instance;
     }
 
     public function getXml() {
@@ -58,12 +69,8 @@ class Core_Config extends Core_Singleton {
             $uriArray = array();
             $uriNodes = $this->_queryXml('//config/controller/*');
             foreach($uriNodes as $uriNode){
-//                foreach($uriNode->children() as $childUriNode){
-//                    array_push($uriArray, (string) $uriNode->uri);
-//                    $uriArray[$uriNode->getName()] = (string) $uriNode->uri;
                     $key = (string) $uriNode->uri;
                     $uriArray[$key] = $uriNode->getName();
-//                }
             }
             return $uriArray;
         }
