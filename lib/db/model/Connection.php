@@ -2,14 +2,14 @@
 
 class Db_Model_Connection extends Core_Singleton {
 
-//    public static function getInstance() {
-//
-//        if (null === self::$instance) {
-//            self::$instance = self::_dbConnect();
-//        }
-//
-//        return self::$instance;
-//    }
+    public static function getInstance() {
+
+        if (null === self::$instance) {
+            self::$instance = self::_dbConnect();
+        }
+
+        return self::$instance;
+    }
 
     protected function _dbConnect() {
 
