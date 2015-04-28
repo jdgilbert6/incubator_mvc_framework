@@ -1,9 +1,23 @@
 <?php
 
-class Core_Response extends Core_Singleton {
+class Core_Response {
+
+    static $instance = null;
 
     protected $_headers;
     protected $_content;
+
+    private function __construct() {}
+
+    public static function getInstance() {
+
+        if (null === self::$instance) {
+            self::$instance = new static();
+        }
+
+        return self::$instance;
+    }
+
 
 
     public function getHeaders() {

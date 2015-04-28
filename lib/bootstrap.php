@@ -15,12 +15,11 @@ final class Bootstrap {
 
 //        self::getModel('db/connection');
         self::buildRequest();
+        self::buildResponse();
         self::getRequest()
             ->set('uri', $_SERVER['REQUEST_URI'])
             ->set('is_dispatched', false);
         self::matchRoute();
-        self::buildResponse();
-        self::getResponse();
 
         //@todo build response object
     }

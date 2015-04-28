@@ -24,6 +24,8 @@ class Core_Controller_Front extends Core_Controller_Abstract {
             $defaultRouter = new Core_Controller_Router_Default();
             $defaultRouter->matchRequest(Bootstrap::getRequest());
         }
+
+        echo Bootstrap::getResponse()->getContent();
     }
 
 
