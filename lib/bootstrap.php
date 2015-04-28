@@ -57,21 +57,23 @@ final class Bootstrap {
         return Core_Config::getInstance();
     }
 
-    public static function getModel($path, $isSingleton = true) {
+    public static function getModel($path) {
+        return self::getGroupClassName($path, 'model');
+    }
 
+    public static function getView($path) {
+        return self::getGroupClassName($path, 'view');
+    }
+
+    public static function getGroupClassName($path, $type){
         $pathArray = explode(DS, $path);
 
         foreach($pathArray as $key => $pathIndex) {
             $pathArray[$key] = ucwords(strtolower($pathIndex));
         }
 
-        $className = $pathArray[0] . '_Model_' . $pathArray[1];
+        $className = $pathArray[0] . '_' . ucwords($type) . '_' . $pathArray[1];
 
-        if($isSingleton) {
-            return $className::getInstance();
-        }
-        else {
-            return new $className();
-        }
+        return new $className();
     }
 }
