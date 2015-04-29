@@ -12,8 +12,9 @@ define('PS', PATH_SEPARATOR);
 define('BASE_PATH', dirname(realpath(__FILE__)));
 define('APP_PATH', BASE_PATH . '/app');
 define('LIB_PATH', BASE_PATH . '/lib');
+define('TMP_PATH', BASE_PATH . '/templates');
 
-set_include_path(get_include_path() . PS . BASE_PATH . PS . APP_PATH . PS . LIB_PATH);
+set_include_path(get_include_path() . PS . BASE_PATH . PS . APP_PATH . PS . LIB_PATH . PS . TMP_PATH);
 
 include LIB_PATH . DS . 'bootstrap.php';
 
