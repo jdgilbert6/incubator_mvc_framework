@@ -4,7 +4,7 @@ class Core_Response {
 
     static $instance = null;
 
-    protected $_headers;
+    protected $_header;
     protected $_content;
 
     private function __construct() {}
@@ -18,14 +18,12 @@ class Core_Response {
         return self::$instance;
     }
 
-
-
-    public function getHeaders() {
-        return $this->_headers;
+    public function getHeader() {
+        return $this->_header;
     }
 
-    public function setHeaders($headers) {
-        $this->_headers = $headers;
+    public function setHeader($header) {
+        $this->_header = $header;
     }
 
     public function getContent() {
