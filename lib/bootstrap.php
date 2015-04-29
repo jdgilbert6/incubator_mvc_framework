@@ -20,8 +20,6 @@ final class Bootstrap {
             ->set('uri', $_SERVER['REQUEST_URI'])
             ->set('is_dispatched', false);
         self::matchRoute();
-
-        //@todo build response object
     }
 
     public static function matchRoute() {
