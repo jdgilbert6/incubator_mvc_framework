@@ -2,23 +2,10 @@
 
 class Page_View_Page extends Page_View_Abstract {
 
-    protected $data;
-    protected $templateDirectory;
-
-    public function getTemplateDirectory() {
-        return $this->templateDirectory;
-    }
-
-    public function setTemplateDirectory($directory) {
-        $this->templateDirectory = rtrim($directory, DS);
-    }
-
-    public function getTemplatePathname($file) {
-        return $this->templateDirectory . DS . ltrim($file, DS);
-    }
+    protected $template;
 
     public function displayTemplate($template) {
-        echo $this->fetchTemplate($template);
+        include_once $this->fetchTemplate($template);
     }
 
     public function fetchTemplate($template) {
@@ -32,6 +19,4 @@ class Page_View_Page extends Page_View_Abstract {
             include_once $template;
         }
     }
-
-
 }
