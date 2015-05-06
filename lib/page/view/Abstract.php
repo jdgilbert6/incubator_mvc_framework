@@ -1,6 +1,6 @@
 <?php
 
-abstract class Page_View_Abstract {
+abstract class Page_View_Abstract extends Core_Object{
 
 //    protected $_data = array();
 //
