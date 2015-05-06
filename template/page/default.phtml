@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <?php $this->addBlock('cms/title'); ?>
-    <?php $this->addAsset('css/ugly'); ?>
+    <link rel="stylesheet" href="<?php echo $this->addAsset('css/ugly')?>">
+    <script src="<?php echo $this->addAsset('js')?>"></script>
 </head>
 <body>
 <?php $this->addBlock('cms/header') ?>
 <?php $this->addBlock('cms/content') ?>
-<?php $this->addAsset('images/blueacorn.jpg') ?>
+<img src="<?php echo $this->addAsset('images/blueacorn.jpg')?>"/>
 <?php $this->addBlock('cms/footer') ?>
 </body>
 </html>
