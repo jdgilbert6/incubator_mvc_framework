@@ -42,4 +42,31 @@ class Page_View_Page extends Page_View_Abstract {
             include_once $blockPath;
         }
     }
+
+    public function addAsset($asset) {
+
+        $assetArray = explode('/', $asset);
+        $type = array_shift($assetArray);
+        $assetFile = strtolower(array_pop($assetArray));
+
+        switch($type) {
+
+            case 'css':
+                $cssPath = BASE_URL . '/assets' . DS . $type . DS . $assetFile . '.css';
+                    echo "<link href='$cssPath' rel='stylesheet' />";
+                break;
+
+            case 'images':
+                $imagePath = ASS_PATH . DS . $type . DS . $assetFile;
+                    echo "<img src='$imagePath'/>";
+                break;
+
+            case 'js':
+                $jsPath = ASS_PATH . DS . $type . DS . $assetFile . '.js';
+                if(file_exists($jsPath)) {
+                    echo "<script src='$jsPath' type='text/javascript'></script>";
+                }
+                break;
+        }
+    }
 }
