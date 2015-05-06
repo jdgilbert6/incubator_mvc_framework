@@ -19,7 +19,7 @@ class Page_View_Page extends Page_View_Abstract {
             if(file_exists(strtolower($path))) {
                 $this->_template = $path;
             } else {
-                $this->_template = TMP_PATH . DS . 'page' . DS . 'default.phtml';
+                $this->_template = TMP_PATH . DS . 'page' . DS . 'users.phtml';
             }
         }
     }
@@ -36,7 +36,7 @@ class Page_View_Page extends Page_View_Abstract {
         $module = array_shift($blockArray);
         $blockFile = strtolower(array_pop($blockArray)) . '.phtml';
 
-        $blockPath = stream_resolve_include_path($module . DS . 'view' . DS . 'block' . DS . $blockFile);
+        $blockPath = stream_resolve_include_path(TMP_PATH. DS . 'block' . DS . $blockFile);
 
         if($blockPath) {
             include_once $blockPath;
@@ -52,20 +52,18 @@ class Page_View_Page extends Page_View_Abstract {
         switch($type) {
 
             case 'css':
-                $cssPath = BASE_URL . '/assets' . DS . $type . DS . $assetFile . '.css';
-                    echo "<link href='$cssPath' rel='stylesheet' />";
+                $cssUrl = BASE_URL . '/assets' . DS . $type . DS . $assetFile . '.css';
+                return $cssUrl;
                 break;
 
             case 'images':
-                $imagePath = ASS_PATH . DS . $type . DS . $assetFile;
-                    echo "<img src='$imagePath'/>";
+                $imageUrl = BASE_URL . '/assets' . DS . $type . DS . $assetFile;
+                return $imageUrl;
                 break;
 
             case 'js':
-                $jsPath = ASS_PATH . DS . $type . DS . $assetFile . '.js';
-                if(file_exists($jsPath)) {
-                    echo "<script src='$jsPath' type='text/javascript'></script>";
-                }
+                $jsUrl = BASE_URL . '/assets' . DS . $type . DS . $assetFile . '.js';
+                return $jsUrl;
                 break;
         }
     }
