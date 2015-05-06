@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <?php $this->addBlock('cms/title') ?>
+    <?php $this->addBlock('cms/title'); ?>
+    <?php $this->addAsset('css/ugly'); ?>
 </head>
 <body>
 <?php $this->addBlock('cms/header') ?>
 <?php $this->addBlock('cms/content') ?>
+<?php $this->addAsset('images/blueacorn.jpg') ?>
 <?php $this->addBlock('cms/footer') ?>
 </body>
 </html>
