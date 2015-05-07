@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <?php $this->addBlock('title'); ?>
+    <link rel="stylesheet" href="<?php echo $this->addAsset('css')?>">
+    <script src="<?php echo $this->addAsset('js')?>"></script>
+</head>
+<body>
+<?php $this->addBlock('header') ?>
+<?php $this->addBlock('content') ?>
+<img src="<?php echo $this->addAsset('image')?>"/>
+<?php $this->addBlock('footer') ?>
+<p>ERROR!</p>
+</body>
+</html>
