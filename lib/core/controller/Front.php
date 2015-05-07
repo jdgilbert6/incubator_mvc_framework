@@ -25,7 +25,7 @@ class Core_Controller_Front extends Core_Controller_Abstract {
             $defaultRouter->matchRequest(Bootstrap::getRequest());
         }
 
-        echo Bootstrap::getResponse()->getContent();
+//        echo Bootstrap::getResponse()->getContent();
     }
 
 
