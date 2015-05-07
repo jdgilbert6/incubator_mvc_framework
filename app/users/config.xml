@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config>
-    <controller>
-        <users>
-            <uri>users</uri>
-        </users>
-    </controller>
-</config>
-
