@@ -12,7 +12,6 @@ class Core_Controller_Abstract {
 
     public function renderPage(Page_View_Abstract $page){
         $this->_getRequest()->set('is_dispatched', true);
-
         $this->_getResponse()->setContent($page->renderTemplate());
     }
 
