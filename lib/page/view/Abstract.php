@@ -3,73 +3,42 @@
 abstract class Page_View_Abstract extends Core_Object{
 
 //    protected $_data = array();
-//
-//    public function __call($methodName, $params = null)
-//    {
+
+//    public function __call($methodName, $params = null) {
 //
 //        $methodNameArray = preg_split('/(?<=[a-z])(?=[A-Z])/x', $methodName);
 //        $method = array_shift($methodNameArray);
-//        $key = strtolower($methodNameArray[0]);
-//
-//        //Test the parameter
-//        //2 Values -> view/block
-//        //1 Value  -> .phtml
-//        if(!empty($params[0]) && count($params) == 1) {
-//            $file = $params[0] . '.phtml';
-//        } elseif (!empty($params[0]) && !empty($params[1])) {
-//
-//        }
-//
-//        // Build the the template path
-//
-//        // Resolve template path
-//        $tp = stream_resolve_include_path($file);
-//
-//        // Build the key
-//        if($tp) {
-//            $this->_data[$key] = $tp;
-//        }
+//        $newParam = strtolower($methodNameArray[0]);
+//        $paramsArray = array_unshift($params, $newParam);
+//        $newParams = implode(',', $params);
 //
 //
 //        switch ($method) {
-//            case 'set':
-//                // Fancy shit goes here
-//                // Assign path name for $_data at $key
-////                if(file_exists(strtolower($methodNameArray[0]))) {
-////                    return $methodNameArray[0];
-////                }
 //
-//                break;
+//            case 'set':
+//
+//                if($method == 'set' && count($params) == 2) {
+//
+//                    $key = $params[0];
+//                    $value = $params[1];
+//                    $this->_data[$key] = $value;
+//                    return $this;
+//                }
+//            break;
 //
 //            case 'get':
 //
-//                $path = '';
+//                if($method == 'get' && count($params) == 1) {
 //
-//                if(isset($params[1])){
-//
-//                    if(isset($params[0]) && $params[0] === 'template'){
-//                        if(!empty($params[1])) {
-//                            $path = TMP_PATH . DS . $params[1] . '.phtml';
-//                        }
-//                    } else if(isset($params[0]) && $params[0] === 'block') {
-//                        if(!empty($params[1])) {
-//                            $path = APP_PATH . DS . 'cms' . DS . 'view' . DS . $params[0] . DS . $params[1] . '.phtml';
-//                        }
+//                    $key = $params[0];
+//                    if(array_key_exists($key, $this->_data)) {
+//                        return $this->_data[$key];
+//                    } else {
+//                        return false;
 //                    }
-//                    include_once $path;
-//
-//
-//                } else {
-//                    //LATER
 //                }
-//
-//
-//
-//                return;
-//
-//                break;
+//            break;
 //        }
-//        return $this;
 //    }
 
     abstract public function renderTemplate();
