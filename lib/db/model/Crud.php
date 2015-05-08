@@ -185,7 +185,6 @@ class Db_Model_Crud {
    }
 
     public function getPrimaryKeyName($table) {
-        //TODO set the primary key for the table using PDO
         $this->conn();
         $sql = "SHOW KEYS FROM `$table` WHERE `Key_name` = 'PRIMARY'";
         $stmt = $this->db->prepare($sql);
