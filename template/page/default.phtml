@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <?php $this->addBlock('title'); ?>
+    <?php echo $this->addBlock('title'); ?>
     <link rel="stylesheet" href="<?php echo $this->addAsset('css/ugly')?>">
     <script src="<?php echo $this->addAsset('js')?>"></script>
 </head>
 <body>
-<?php $this->addBlock('header') ?>
-<?php $this->addBlock('content') ?>
+<?php echo $this->addBlock('header') ?>
+<?php echo $this->addBlock('content') ?>
 <img src="<?php echo $this->addAsset('image/blueacorn.jpg')?>"/>
-<?php $this->addBlock('footer') ?>
+<?php echo $this->addBlock('footer') ?>
 </body>
 </html>
