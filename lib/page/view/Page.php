@@ -2,6 +2,8 @@
 
 class Page_View_Page extends Page_View_Abstract {
 
+    const ASSET_DIRECTORY = 'asset';
+
     protected $_template;
     protected $_data = array();
 
@@ -30,11 +32,9 @@ class Page_View_Page extends Page_View_Abstract {
      * File path is defined and returned if it exists.
      * Exception template is displayed if file path does not exist.
      */
-    public function setTemplate($template, $file = null) {
+    public function setTemplate($template) {
 
-        if(!empty($template) && $file != null) {
-            $this->_data[$template] = $file;
-        } elseif(!empty($template)) {
+        if(!empty($template)) {
             $pathArray = explode('/', $template);
             $path = TMP_PATH . DS . $pathArray[0] . DS . $pathArray[1] . '.phtml';
             if(file_exists(strtolower($path))) {
@@ -45,12 +45,20 @@ class Page_View_Page extends Page_View_Abstract {
         }
     }
 
+    public function setChildTemplate($template, $file = null) {
+
+        if(!empty($template) && $file != null) {
+            $this->_data[$template] = $file;
+        }
+    }
+
     /**
      * Template renderer
      *
      *  If it exists, the value of $_template is included and displayed.
      */
     public function renderTemplate(){
+
         if(file_exists(strtolower($this->getTemplate()))) {
             include_once $this->getTemplate();
         }
@@ -67,15 +75,11 @@ class Page_View_Page extends Page_View_Abstract {
         if(array_key_exists($block, $this->_data)) {
             $blockFile = $this->_data[$block];
             $blockPath = TMP_PATH . DS . 'block' . DS . $blockFile . '.phtml';
-            include_once $blockPath;
         } else {
             $blockFile = $block . '.phtml';
             $blockPath = stream_resolve_include_path(TMP_PATH . DS . 'block' . DS . $blockFile);
-
-            if ($blockPath) {
-                include_once $blockPath;
-            }
         }
+        include_once $blockPath;
     }
 
     /**
@@ -90,23 +94,7 @@ class Page_View_Page extends Page_View_Abstract {
         $assetArray = explode('/', $asset);
         $type = array_shift($assetArray);
         $assetFile = strtolower(array_pop($assetArray));
-
-        switch($type) {
-
-            case 'css':
-                $cssUrl = BASE_URL . '/asset' . DS . $type . DS . $assetFile . '.css';
-                return $cssUrl;
-                break;
-
-            case 'image':
-                $imageUrl = BASE_URL . '/asset' . DS . $type . DS . $assetFile;
-                return $imageUrl;
-                break;
-
-            case 'js':
-                $jsUrl = BASE_URL . '/asset' . DS . $type . DS . $assetFile . '.js';
-                return $jsUrl;
-                break;
-        }
+        $assetPath = ASS_PATH . DS . $type . DS . $assetFile;
+        return $assetPath;
     }
 }
