@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <?php $this->get('block', 'title') ?>
+    <?php echo $this->addBlock('title') ?>
 </head>
 <body>
+<?php echo $this->addBlock('header') ?>
+<?php echo $this->addBlock('content') ?>
+<?php echo $this->addBlock('footer') ?>
 This is users!
 </body>
 </html>
