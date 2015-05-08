@@ -13,7 +13,7 @@ final class Bootstrap {
 
     public static function run() {
 
-//        self::getModel('db/connection');
+//        self::getModel('core/db');
         self::buildRequest();
         self::buildResponse();
         self::getRequest()
