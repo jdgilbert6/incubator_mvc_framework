@@ -14,7 +14,7 @@ define('BASE_URL', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'])
 define('APP_PATH', BASE_PATH . '/app');
 define('LIB_PATH', BASE_PATH . '/lib');
 define('TMP_PATH', BASE_PATH . '/template');
-define('ASS_PATH', BASE_PATH . '/asset');
+define('ASS_PATH', BASE_URL . '/asset');
 
 // Set defined paths to be included
 set_include_path(get_include_path() . PS . BASE_PATH . PS . APP_PATH . PS . LIB_PATH . PS . TMP_PATH . PS . ASS_PATH);
