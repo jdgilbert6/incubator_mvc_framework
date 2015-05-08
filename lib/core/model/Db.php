@@ -6,16 +6,26 @@ class Core_Model_Db extends Core_Model_Abstract {
     protected $_origData = array();
     protected $_db = null;
 
+    /**
+     * Database model constructor
+     *
+     */
     public function __construct() {
 
         $this->_db = Bootstrap::getModel('db/crud', false);
-
+        /* $instanceName is set to Core_Model_Db */
         $instanceName = get_class($this);
+        /* Set class name to an array. */
         $classNameArray = explode('_', $instanceName);
+        /* Identify last word in classNameArray */
         $lastWord = end($classNameArray);
+        /* Add 's' to the end of last word and title table as last word. */
         $this->_table = strtolower($lastWord) . 's';
     }
 
+    /**
+     * Add an entry to a row in the database
+     */
     public function load($param = null) {
 
         $result = $this->_db->dbSelect($this->_table, $param);
@@ -27,6 +37,9 @@ class Core_Model_Db extends Core_Model_Abstract {
         return $this;
     }
 
+    /**
+     * Insert data into table or update data in table.
+     */
     public function save() {
 
         if(empty($this->_origData)) {
@@ -44,6 +57,9 @@ class Core_Model_Db extends Core_Model_Abstract {
         return $this;
     }
 
+    /**
+     * Delete data from table.
+     */
     public function delete($param = null) {  #TODO test for table dependencies
 
         if($param !== null) {

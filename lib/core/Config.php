@@ -2,10 +2,12 @@
 
 class Core_Config {
 
-
     static $xml = null;
     static $frontNames = null;
 
+    /**
+     * Singleton instance
+     */
     static $instance = null;
 
     private function __construct() {}
@@ -19,10 +21,19 @@ class Core_Config {
         return self::$instance;
     }
 
+    /**
+     * Provide public access to protected function _getXml
+     */
     public function getXml() {
         return $this->_getXml();
     }
 
+    /**
+     * Search all included files paths for config.xml files.
+     * Store config.xml files in $xmlFiles array.
+     * File is added using MergeXML.php file.
+     * All config.xml files are held in static variable $xml and returned.
+     */
     protected function _getXml() {
 
         if(!self::$xml){
@@ -41,6 +52,10 @@ class Core_Config {
         return self::$xml;
     }
 
+    /**
+     * Query xml using XPath.
+     * Return an array of SimpleXMLElement objects.
+     */
     protected function _queryXml($xpath = false) {
 
         if($xpath){
@@ -48,6 +63,10 @@ class Core_Config {
         }
     }
 
+    /**
+     * XPath search through xml nodes in config.xml files.
+     * Return array of routers inside <routes> nodes.
+     */
     public function getRouters() {
 
         $routersArray = array();
@@ -61,6 +80,12 @@ class Core_Config {
         return $routersArray;
     }
 
+    /**
+     * If $frontNames has a value, return the value.
+     * If $frontNames has no value, XPath through config.xml files.
+     * Return array child nodes of <controller> nodes.
+     * This is used for url rewriting.
+     */
     public function getFrontNamesArray() {
 
         if(self::$frontNames){
@@ -76,6 +101,10 @@ class Core_Config {
         }
     }
 
+    /**
+     * XPath search through xml nodes in config.xml files.
+     * Return array of child nodes of <database> nodes.
+     */
     public function getDatabase() {
 
         $dbArray = array();
