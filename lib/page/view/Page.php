@@ -3,6 +3,7 @@
 class Page_View_Page extends Page_View_Abstract {
 
     protected $_template;
+    protected $_data = array();
 
     /**
      * Page view constructor
@@ -10,7 +11,7 @@ class Page_View_Page extends Page_View_Abstract {
      * If no template is specified, the default page template will be set.
      */
     public function __construct() {
-        $this->setTemplate('page/default');
+//        $this->setTemplate('page/default');
     }
 
     /**
@@ -29,9 +30,11 @@ class Page_View_Page extends Page_View_Abstract {
      * File path is defined and returned if it exists.
      * Exception template is displayed if file path does not exist.
      */
-    public function setTemplate($block, $template = null) {
+    public function setTemplate($template, $file = null) {
 
-        if(!empty($template)) {
+        if(!empty($template) && $file != null) {
+            $this->_data[$template] = $file;
+        } elseif(!empty($template)) {
             $pathArray = explode('/', $template);
             $path = TMP_PATH . DS . $pathArray[0] . DS . $pathArray[1] . '.phtml';
             if(file_exists(strtolower($path))) {
@@ -61,12 +64,17 @@ class Page_View_Page extends Page_View_Abstract {
      */
     public function addBlock($block = null) {
 
-        $blockFile = $block . '.phtml';
-
-        $blockPath = stream_resolve_include_path(TMP_PATH. DS . 'block' . DS . $blockFile);
-
-        if($blockPath) {
+        if(array_key_exists($block, $this->_data)) {
+            $blockFile = $this->_data[$block];
+            $blockPath = TMP_PATH . DS . 'block' . DS . $blockFile . '.phtml';
             include_once $blockPath;
+        } else {
+            $blockFile = $block . '.phtml';
+            $blockPath = stream_resolve_include_path(TMP_PATH . DS . 'block' . DS . $blockFile);
+
+            if ($blockPath) {
+                include_once $blockPath;
+            }
         }
     }
 
