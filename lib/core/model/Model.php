@@ -1,6 +1,6 @@
 <?php
 
-class Core_Model_Db extends Core_Object {
+class Core_Model_Model extends Core_Object {
 
     protected $_table = '';
     protected $_origData = array();
@@ -12,7 +12,7 @@ class Core_Model_Db extends Core_Object {
      */
     public function __construct() {
 
-        $this->_db = Bootstrap::getModel('db/crud', false);
+        $this->_db = Bootstrap::getModel('db/wrapper');
         /* $instanceName is set to Core_Model_Db */
         $instanceName = get_class($this);
         /* Set class name to an array. */
@@ -28,7 +28,7 @@ class Core_Model_Db extends Core_Object {
      */
     public function load($param = null) {
 
-        $result = $this->_db->dbSelect($this->_table, $param);
+        $result = $this->_db->select($this->_table, $param);
         foreach ($result[0] as $key => $value) {
             $this->_data[$key] = $value;
             $this->_origData[$key] = $value;
@@ -43,13 +43,13 @@ class Core_Model_Db extends Core_Object {
     public function save() {
 
         if(empty($this->_origData)) {
-            $this->_db->dbInsert($this->_table,$this->_data);
+            $this->_db->insert($this->_table,$this->_data);
         } else {
             $pk = $this->_db->getPrimaryKeyName($this->_table);
             $id = $this->_origData[$pk];
             foreach($this->_data as $fieldname => $value) {
                 if($pk !== $fieldname) {
-                    $this->_db->dbUpdate($this->_table, $fieldname, $value, $id);
+                    $this->_db->update($this->_table, $fieldname, $value, $id);
                 }
             }
         }
@@ -63,11 +63,11 @@ class Core_Model_Db extends Core_Object {
     public function delete($param = null) {  #TODO test for table dependencies
 
         if($param !== null) {
-            $this->_db->dbDelete($this->_table, $param);
+            $this->_db->delete($this->_table, $param);
         } elseif(!empty($_origData)) {
             $pk = $this->_db->getPrimaryKeyName($this->_table);
             $id = $this->_origData[$pk];
-            $this->_db->dbDelete($this->_table, $id);
+            $this->_db->delete($this->_table, $id);
         } elseif($param == null && empty($_origData)) {
             echo "No data has been deleted.";
         }
