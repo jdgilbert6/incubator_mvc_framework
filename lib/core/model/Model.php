@@ -1,6 +1,6 @@
 <?php
 
-class Core_Model_Db extends Core_Model_Abstract {
+class Core_Model_Db extends Core_Object {
 
     protected $_table = '';
     protected $_origData = array();
