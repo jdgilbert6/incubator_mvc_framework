@@ -1,5 +1,5 @@
 <?php
 
-class Cms_Model_User extends Cms_Model_Abstract {
+class Cms_Model_User extends Core_Model_Model {
 
 }
