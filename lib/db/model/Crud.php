@@ -37,7 +37,7 @@ class Db_Model_Crud {
      */
     public function dbSelect($table, $id=null, $fieldname=null)
     {
-        $this->conn();
+//        $this->conn();
         if($fieldname == null) {
             $pk = $this->getPrimaryKeyName($table);
             $sql = "SELECT * FROM `$table` WHERE `$pk`=:id";
@@ -100,7 +100,7 @@ class Db_Model_Crud {
     {
         $this->getPrimaryKeyName($table);
 
-        $this->conn();
+//        $this->conn();
         /*** snarg the field names from the first array member ***/
         $fieldnames = array_keys($values);
         /*** now build the query ***/
@@ -145,7 +145,7 @@ class Db_Model_Crud {
      */
     public function dbUpdate($table, $fieldname, $value, $id)
     {
-        $this->conn();
+//        $this->conn();
         $pk = $this->getPrimaryKeyName($table);
         $sql = "UPDATE `$table` SET `$fieldname`='{$value}' WHERE `$pk` = :id";
         $stmt = $this->db->prepare($sql);
@@ -171,7 +171,7 @@ class Db_Model_Crud {
      */
     public function dbDelete($table, $id)
     {
-        $this->conn();
+//        $this->conn();
         $pk = $this->getPrimaryKeyName($table);
         $sql = "DELETE FROM `$table` WHERE `$pk` = :id";
         $stmt = $this->db->prepare($sql);
@@ -185,7 +185,7 @@ class Db_Model_Crud {
    }
 
     public function getPrimaryKeyName($table) {
-        $this->conn();
+//        $this->conn();
         $sql = "SHOW KEYS FROM `$table` WHERE `Key_name` = 'PRIMARY'";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
