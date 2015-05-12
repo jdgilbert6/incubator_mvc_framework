@@ -12,7 +12,7 @@ class Cms_Controller_Index extends Core_Controller_Abstract {
         $db->set('email', 'somebody@here.com');
         $db->set('username', 'somebody');
         $db->set('password', 'smbdy');
-        $db->load();
+        $db->save();
     }
 
 }
