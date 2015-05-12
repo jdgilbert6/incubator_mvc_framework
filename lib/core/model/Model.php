@@ -13,7 +13,7 @@ class Core_Model_Model extends Core_Object {
     public function __construct() {
 
         $this->_db = Bootstrap::getModel('db/wrapper');
-        /* $instanceName is set to Core_Model_Db */
+        /* $instanceName is set to called app model */
         $instanceName = get_class($this);
         /* Set class name to an array. */
         $classNameArray = explode('_', $instanceName);
@@ -60,7 +60,7 @@ class Core_Model_Model extends Core_Object {
     /**
      * Delete data from table.
      */
-    public function delete($param = null) {  #TODO test for table dependencies
+    public function delete($param = null) {
 
         if($param !== null) {
             $this->_db->delete($this->_table, $param);
