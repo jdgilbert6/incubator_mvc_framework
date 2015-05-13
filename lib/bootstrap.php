@@ -13,13 +13,14 @@ final class Bootstrap {
 
     public static function run() {
 
-        self::getModel('core/model');
+        self::startSession();
         self::buildRequest();
         self::buildResponse();
         self::getRequest()
             ->set('uri', $_SERVER['REQUEST_URI'])
             ->set('is_dispatched', false);
         self::matchRoute();
+        self::getModel('core/model');
     }
 
     public static function matchRoute() {
@@ -33,6 +34,10 @@ final class Bootstrap {
             $front->addRoutes($routerInstance);
         }
         $front->dispatch();
+    }
+
+    public static function startSession() {
+        return new Core_Session();
     }
 
     public static function buildRequest() {
