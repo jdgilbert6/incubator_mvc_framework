@@ -2,8 +2,6 @@
 
 class Page_View_Page extends Page_View_Abstract {
 
-    const ASSET_DIRECTORY = 'asset';
-
     protected $_template;
     protected $_data = array();
 
