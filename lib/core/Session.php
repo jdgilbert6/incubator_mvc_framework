@@ -15,6 +15,34 @@ class Core_Session {
         return self::$instance;
     }
 
+    public function connect() {
+
+    }
+
+    public function open() {
+
+    }
+
+    public function close() {
+
+    }
+
+    public function read() {
+
+    }
+
+    public function write() {
+
+    }
+
+    public function destroy() {
+
+    }
+
+    public function gc() {
+
+    }
+
     public function getSessionVariable($session, $variable) {
         session_id($session);
         session_start();
