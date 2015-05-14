@@ -41,10 +41,10 @@ class Db_Model_Wrapper {
         $stmt->execute();
     }
 
-    public function update($table, $fieldname, $id) {
+    public function update($table, $fieldname, $value, $id) {
         $this->connect();
         $pk = $this->getPrimaryKeyName($table);
-        $sql = "UPDATE . $table . SET . $fieldname . WHERE . $pk . = :id";
+        $sql = "UPDATE $table SET $fieldname = '$value' WHERE $pk = :id";
         $stmt = $this->_db->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
         $stmt->execute();
@@ -67,5 +67,19 @@ class Db_Model_Wrapper {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $primaryKeyName = $result[0]['Column_name'];
         return $primaryKeyName;
+    }
+
+    public function createUsersTable() {
+        $this->connect();
+        $sql = "CREATE TABLE 'users' (
+          'id' int(10) NOT NULL AUTO_INCREMENT,
+          'firstname' VARCHAR(30) NOT NULL,
+          'lastname' VARCHAR(30) NOT NULL,
+          'email' VARCHAR(255) NOT NULL,
+          'username' VARCHAR(30) NOT NULL,
+          'password' VARCHAR(30) NOT NULL,
+          PRIMARY KEY(id),)";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
     }
 }
