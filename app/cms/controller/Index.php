@@ -8,6 +8,7 @@ class Cms_Controller_Index extends Core_Controller_Abstract {
 //        $page->setChildTemplate('header', 'test');
 //        $page->renderTemplate();
         $db = Bootstrap::getModel('cms/user');
+        $db->load(2);
         $db->set('name', 'Some Body');
         $db->set('email', 'somebody@here.com');
         $db->set('username', 'somebody');
