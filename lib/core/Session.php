@@ -3,15 +3,21 @@
 class Core_Session {
 
     public function __construct() {
-        session_start();
+        $this->startSession();
     }
 
-    public function getCookie() {
-
+    public function startSession() {
+        if(!isset($_SESSION) && session_id() == '') {
+            session_start();
+        }
     }
 
-    public function setCookie() {
+    public function endSession() {
+        session_unset();
+    }
 
+    public function destroySession() {
+        session_destroy();
     }
 
     public function getSessionVariable($session, $variable) {
@@ -24,10 +30,5 @@ class Core_Session {
     public function setSessionVariable($session, $variable, $value) {
         session_id($session);
         $_SESSION[$variable] = $value;
-    }
-
-    public function isUser() {
-        if(self::getSessionVariable('account', 'logged_in'));
-            return self::getSessionVariable('account', 'logged_in');
     }
 }
