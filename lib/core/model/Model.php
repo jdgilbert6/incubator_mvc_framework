@@ -24,7 +24,7 @@ class Core_Model_Model extends Core_Object {
     }
 
     /**
-     * Add an entry to a row in the database
+     * Select an entry in a row in the table.
      */
     public function load($param = null) {
 
