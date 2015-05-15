@@ -31,4 +31,18 @@ class Core_Session {
         session_id($session);
         $_SESSION[$variable] = $value;
     }
+
+    public function getCookie($name) {
+        if($_COOKIE[$name]) {
+            return $_COOKIE[$name];
+        }
+    }
+
+    public function setCookie($name, $value, $expire = null) {
+        if(!$expire === null) {
+            setcookie($name, $value, $expire);
+        } else {
+            setcookie($name, $value, time() + 3600);
+        }
+    }
 }
