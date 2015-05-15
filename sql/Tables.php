@@ -1,8 +1,8 @@
 <?php
 
-class Sql_Users extends Db_Model_Wrapper {
+class Sql_Tables extends Db_Model_Wrapper {
 
-    public function createUsersTable() {
+    protected function createUsersTable() {
         $this->connect();
         $sql = "CREATE TABLE 'users' (
           'id' int(10) NOT NULL AUTO_INCREMENT,
@@ -16,7 +16,7 @@ class Sql_Users extends Db_Model_Wrapper {
         $stmt->execute();
     }
 
-    public function createAdminTable() {
+    protected function createAdminTable() {
         $this->connect();
         $sql = "CREATE TABLE 'admin' (
           'id' int(10) NOT NULL AUTO_INCREMENT,
@@ -29,22 +29,30 @@ class Sql_Users extends Db_Model_Wrapper {
         $stmt->execute();
     }
 
-    public function createBlogTable() {
+    protected function createBlogTable() {
         $this->connect();
-        $sql = "CREATE TABLE 'users' (
+        $sql = "CREATE TABLE 'blog' (
           'id' int(10) NOT NULL AUTO_INCREMENT,
           'author' VARCHAR(30) NOT NULL,
           'date' VARCHAR(30) NOT NULL,
-          'title' VARCHAR(255) NOT NULL,
-          'content' VARCHAR(30) NOT NULL,
-          'image'
-          'url'  VARCHAR(30) NOT NULL,
+          'title' VARCHAR(100) NOT NULL,
+          'content' VARCHAR(255) NOT NULL,
+          'image' VARCHAR(100) NOT NULL,
+          'url' VARCHAR(100) NOT NULL,
           PRIMARY KEY(id))";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
     }
 
-    public function createCommentsTable() {
-
+    protected function createCommentsTable() {
+        $this->connect();
+        $sql = "CREATE TABLE 'comments' (
+          'id' int(10) NOT NULL AUTO_INCREMENT,
+          'comment' VARCHAR(255) NOT NULL,
+          'date' VARCHAR(30) NOT NULL,
+          'blogid' VARCHAR(255) NOT NULL,
+          PRIMARY KEY(id))";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
     }
 }
