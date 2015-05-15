@@ -11,4 +11,9 @@
         <user>root</user>
         <password>password</password>
     </database>
+    <table>
+        <users>
+            <setup>0</setup>
+        </users>
+    </table>
 </config>
