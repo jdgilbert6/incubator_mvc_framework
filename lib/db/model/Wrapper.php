@@ -78,7 +78,7 @@ class Db_Model_Wrapper {
           'email' VARCHAR(255) NOT NULL,
           'username' VARCHAR(30) NOT NULL,
           'password' VARCHAR(30) NOT NULL,
-          PRIMARY KEY(id),)";
+          PRIMARY KEY(id))";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
     }
