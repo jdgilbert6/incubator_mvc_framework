@@ -2,9 +2,9 @@
 
 class Db_Model_Wrapper {
 
-    private $_db;
+    protected $_db;
 
-    private function connect() {
+    protected function connect() {
         if(!$this->_db instanceof PDO) {
             $this->_db = Db_Model_Connection::getInstance();
         }
@@ -67,20 +67,5 @@ class Db_Model_Wrapper {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $primaryKeyName = $result[0]['Column_name'];
         return $primaryKeyName;
-    }
-
-    //Move to sql file in root of site...
-    public function createUsersTable() {
-        $this->connect();
-        $sql = "CREATE TABLE 'users' (
-          'id' int(10) NOT NULL AUTO_INCREMENT,
-          'firstname' VARCHAR(30) NOT NULL,
-          'lastname' VARCHAR(30) NOT NULL,
-          'email' VARCHAR(255) NOT NULL,
-          'username' VARCHAR(30) NOT NULL,
-          'password' VARCHAR(30) NOT NULL,
-          PRIMARY KEY(id))";
-        $stmt = $this->_db->prepare($sql);
-        $stmt->execute();
     }
 }
