@@ -69,6 +69,7 @@ class Db_Model_Wrapper {
         return $primaryKeyName;
     }
 
+    //Move to sql file in root of site...
     public function createUsersTable() {
         $this->connect();
         $sql = "CREATE TABLE 'users' (

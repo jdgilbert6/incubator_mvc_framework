@@ -11,6 +11,12 @@
         <user>root</user>
         <password>password</password>
     </database>
+    <!-- Todo -->
+    <!--
+     Move to core module config.xml.
+     If not setup, then run sql file in php and then update setup node to 1
+
+    -->
     <table>
         <users>
             <setup>0</setup>
