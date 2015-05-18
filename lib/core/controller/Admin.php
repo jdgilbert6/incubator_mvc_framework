@@ -1,7 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: josh
- * Date: 5/18/15
- * Time: 10:48 AM
- */
+
+class Core_Controller_Admin extends Core_Controller_Abstract {
+
+    public function register() {
+
+    }
+
+    public function login() {
+
+    }
+
+    public function logout() {
+
+    }
+}
