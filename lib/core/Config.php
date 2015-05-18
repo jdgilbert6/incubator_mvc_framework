@@ -119,18 +119,15 @@ class Core_Config {
         return $dbArray;
     }
 
-    public function getTable() {
+    public function tableSetup() {
 
         $tableArray = array();
         $tableXml = $this->_queryXml('//config/table');
 
-        foreach($tableXml as $tableNodes) {
-            foreach($tableNodes as $key => $value) {
-                $tableArray[$key] = (array) $value;
-            }
+        foreach($tableXml as $tableArray) {
         }
 
-        print_r($tableArray);
+        return $tableArray;
     }
 }
 
