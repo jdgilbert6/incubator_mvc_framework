@@ -42,7 +42,7 @@ class Core_Session {
         if(!$expire === null) {
             setcookie($name, $value, $expire);
         } else {
-            setcookie($name, $value, time() + 3600);
+            setcookie($name, $value, time() + (86400 * 7));
         }
     }
 }
