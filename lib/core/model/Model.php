@@ -12,15 +12,24 @@ class Core_Model_Model extends Core_Object {
      */
     public function __construct() {
 
-        $this->_db = Bootstrap::getModel('db/wrapper');
-        /* $instanceName is set to called app model */
-        $instanceName = get_class($this);
-        /* Set class name to an array. */
-        $classNameArray = explode('_', $instanceName);
-        /* Identify last word in classNameArray */
-        $lastWord = end($classNameArray);
-        /* Add 's' to the end of last word and title table as last word. */
-        $this->_table = strtolower($lastWord) . 's';
+        $this->init();
+//        /* $instanceName is set to called app model */
+//        $instanceName = get_class($this);
+//        /* Set class name to an array. */
+//        $classNameArray = explode('_', $instanceName);
+//        /* Identify last word in classNameArray */
+//        $lastWord = end($classNameArray);
+//        /* Add 's' to the end of last word and title table as last word. */
+//        $this->_table = strtolower($lastWord) . 's';
+    }
+
+    public function init() {
+
+        $x = new Db_Model_Tables();
+        $x->createUsersTable();
+        $x->createAdminTable();
+        $x->createBlogTable();
+        $x->createCommentsTable();
     }
 
     /**
