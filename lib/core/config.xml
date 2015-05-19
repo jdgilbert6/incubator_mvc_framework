@@ -7,7 +7,7 @@
     </routes>
     <database>
         <host>localhost</host>
-        <dbname>users</dbname>
+        <dbname>application</dbname>
         <user>root</user>
         <password>password</password>
     </database>
