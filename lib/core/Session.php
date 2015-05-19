@@ -32,9 +32,11 @@ class Core_Session {
         $_SESSION[$variable] = $value;
     }
 
-    public function getCookie($name) {
+    public function getCookie($name = null) {
         if($_COOKIE[$name]) {
             return $_COOKIE[$name];
+        }else {
+            return $_COOKIE;
         }
     }
 
