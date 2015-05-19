@@ -12,6 +12,7 @@ class Core_Model_Model extends Core_Object {
      */
     public function __construct() {
 
+        $this->_db = Db_Model_Connection::getInstance();
         $this->init();
 //        /* $instanceName is set to called app model */
 //        $instanceName = get_class($this);
