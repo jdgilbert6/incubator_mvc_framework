@@ -4,6 +4,8 @@ class Db_Model_Wrapper {
 
     protected $_db;
 
+    public function construct() {}
+
     protected function connect() {
         if(!$this->_db instanceof PDO) {
             $this->_db = Db_Model_Connection::getInstance();
