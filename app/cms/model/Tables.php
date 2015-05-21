@@ -2,24 +2,36 @@
 
 class Db_Model_Tables extends Db_Model_Wrapper {
 
-    public function __construct() {
+    static $instance = null;
+
+    private function __construct() {
 
         $setup = Bootstrap::getConfig()->tableSetup();
 
-        if($setup == 0) {
+        if ($setup == 0) {
             $this->init();
             Bootstrap::getConfig()->changeSetupValue();
         }
+    }
+
+    public static function getInstance() {
+
+        if (null === self::$instance) {
+                self::$instance = new static();
+        }
+
+        return self::$instance;
+
     }
 
     public function init() {
 
         $this->createUsersTable();
         $this->createAdminTable();
-        $this->loadSampleAdmin();
         $this->createBlogTable();
-        $this->loadSampleBlog();
         $this->createCommentsTable();
+        $this->loadSampleAdmin();
+        $this->loadSampleBlog();
         $this->loadSampleComments();
     }
 
@@ -62,8 +74,7 @@ class Db_Model_Tables extends Db_Model_Wrapper {
           content MEDIUMTEXT NOT NULL,
           image VARCHAR(100) NOT NULL,
           url VARCHAR(100) NOT NULL,
-          PRIMARY KEY(id),
-          FOREIGN KEY (author) REFERENCES admin(name) ON DELETE CASCADE)
+          PRIMARY KEY(id))
           ENGINE=INNODB";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
@@ -71,15 +82,33 @@ class Db_Model_Tables extends Db_Model_Wrapper {
 
     public function createCommentsTable() {
         $this->connect();
-        $sql = "
-          CREATE TABLE IF NOT EXISTS comments (
+        $sql = "CREATE TABLE IF NOT EXISTS comments (
           id INT(10) NOT NULL AUTO_INCREMENT,
           comment VARCHAR(255) NOT NULL,
           date VARCHAR(30) NOT NULL,
           blogid INT(10) NOT NULL,
-          PRIMARY KEY(id),
-          FOREIGN KEY (blogid) REFERENCES blog(id) ON DELETE CASCADE)
+          PRIMARY KEY(id))
           ENGINE=INNODB";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
+    }
+
+    public function addBlogForeignKey() {
+        $this->connect();
+        $sql = "ALTER TABLE blog
+          ADD CONSTRAINT FK_blog
+          FOREIGN KEY (author) REFERENCES admin(name)
+          ON DELETE CASCADE";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
+    }
+
+    public function addCommentsForeignKey() {
+        $this->connect();
+        $sql = "ALTER TABLE comments
+          ADD CONSTRAINT FK_comments
+          FOREIGN KEY (blogid) REFERENCES blog(id)
+          ON DELETE CASCADE";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
     }
