@@ -2,20 +2,18 @@
 
 class Core_Response {
 
-    static $instance = null;
-
     protected $_header;
     protected $_content;
 
     private function __construct() {}
 
-    public static function getInstance() {
-
-        if (null === self::$instance) {
-            self::$instance = new static();
+    public static function getInstance(){
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new static();
         }
 
-        return self::$instance;
+        return $instance;
     }
 
     public function getHeader() {
