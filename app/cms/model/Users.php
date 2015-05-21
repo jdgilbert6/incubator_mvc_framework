@@ -1,5 +1,10 @@
 <?php
 
-class Cms_Model_User extends Core_Model_Model {
+class Cms_Model_Users extends Core_Model_Model {
 
+    public function __construct() {
+
+        $this->getTableName();
+
+    }
 }
