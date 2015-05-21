@@ -121,13 +121,24 @@ class Core_Config {
 
     public function tableSetup() {
 
-        $tableArray = array();
         $tableXml = $this->_queryXml('//config/table');
 
         foreach($tableXml as $tableArray) {
+            $tableArray = (array) json_decode(json_encode($tableArray));
+            foreach($tableArray as $key => $value) {
+                $tableArray[$key] = $value;
+            }
         }
+        return $value;
+    }
 
-        return $tableArray;
+    public function changeSetupValue() {
+
+        $doc = new DOMDocument();
+        $doc->load('**/core/config.xml');
+        $setup = $doc->getElementsByTagName('setup');
+        $value = $setup->item(0)->nodeValue = 1;
+        $doc->saveXML();
     }
 }
 
