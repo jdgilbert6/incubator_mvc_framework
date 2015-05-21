@@ -13,7 +13,7 @@ final class Bootstrap {
 
     public static function run() {
 
-        self::startSession();
+        session_start();
         self::buildRequest();
         self::buildResponse();
         self::getRequest()
@@ -34,10 +34,6 @@ final class Bootstrap {
             $front->addRoutes($routerInstance);
         }
         $front->dispatch();
-    }
-
-    public static function startSession() {
-        return new Core_Session();
     }
 
     public static function buildRequest() {
