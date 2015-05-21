@@ -7,10 +7,14 @@
     <script src="<?php echo $this->addAsset('js')?>"></script>
 </head>
 <body>
-<?php $this->addBlock('header') ?>
-<?php $this->addBlock('content') ?>
-<img src="<?php echo $this->addAsset('image')?>"/>
-<?php $this->addBlock('footer') ?>
-<p>ADMIN</p>
+<?php $this->addBlock('admin_header') ?>
+<form id="login" method="POST" action="Access.php">
+    <label for="email">Email</label><em>*</em>
+    <input id="email" type="email" name="email" class="required"/></br>
+    <label for="password">Password</label><em>*</em>
+    <input id="password" type="password" name="password" class="required"/></br>
+    <input id="is-active" type="hidden" name="is-active" value="1" />
+    <button type="button" class="register-button">Login</button>
+</form>
 </body>
 </html>
