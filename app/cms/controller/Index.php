@@ -7,6 +7,7 @@ class Cms_Controller_Index extends Core_Controller_Abstract {
         $page->setTemplate('page/admin');
 //        $page->setChildTemplate('header', 'test');
         $page->renderTemplate();
+       Bootstrap::getModel('cms/blog')->load(1);
     }
 
 }
