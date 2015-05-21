@@ -1,41 +1,36 @@
 <?php
 
-class Core_Model_Access extends Core_Model_Model{
+class Core_Model_Access extends Core_Model_Model {
 
-    public function register() {
+    public function __construct() {}
 
-        $db = Bootstrap::getModel('cms/user');
-        $db->set('firstname', 'firstname');
-        $db->set('lastname', 'Body');
-        $db->set('email', 'somebody@here.com');
-        $db->set('username', 'somebody');
-        $db->set('password', 'smbdy');
+    public function adminRegister() {
+
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $db = Bootstrap::getModel('core/admin');
+        $db->set('name', $name);
+        $db->set('email', $email);
+        $db->set('password', sha1($password));
         $db->save();
-
-//        $firstname  = $_POST['firstname'];
-//        $lastname   = $_POST['lastname'];
-//        $email      = $_POST['email'];
-//        $username   = $_POST['username'];
-//        $password   = sha1($_POST['password']);
-//
-//        $sql = new Db_Model_Wrapper();
-//        $sql->insert('users', 'firstname', 'lastname', 'email', 'username', 'password');
-
     }
 
-    public function login() {
+    public function adminLogin() {
 
-        $username   = $_POST['username'];
-        $password   = $_POST['password'];
+        $email = $_POST['email'];
+        $password = sha1($_POST['password']);
 
-        $login = new Core_Session();
-        $login->setSessionVariable('user', 'logged-in', true);
-        $login->getCookie();
+        $login = Bootstrap::getModel('core/admin')->load('email');
+        $pass = Bootstrap::getModel('core/admin')->load(sha1('password'));
+
+        if($email === $login && $password === $pass)
+            Core_Session::setSessionVariable('admin', 'logged-in', true);
     }
 
     public function logout() {
 
-        $logout = new Core_Session();
-        $logout->endSession();
+        Core_Session::endSession();
     }
 }
