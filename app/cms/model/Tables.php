@@ -1,8 +1,19 @@
 <?php
 
-class Db_Model_Tables extends Db_Model_Wrapper {
+class Cms_Model_Tables {
 
-    static $instance = null;
+//    static $instance = null;
+    protected $_db = null;
+
+    public static function getInstance()
+    {
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new static();
+        }
+
+        return $instance;
+    }
 
     private function __construct() {
 
@@ -14,18 +25,19 @@ class Db_Model_Tables extends Db_Model_Wrapper {
         }
     }
 
-    public static function getInstance() {
-
-        if (null === self::$instance) {
-                self::$instance = new static();
-        }
-
-        return self::$instance;
-
-    }
+//    public static function getInstance() {
+//
+//        if (null === self::$instance) {
+//                self::$instance = new static();
+//        }
+//
+//        return self::$instance;
+//
+//    }
 
     public function init() {
 
+//        Bootstrap::getConnection();
         $this->createUsersTable();
         $this->createAdminTable();
         $this->createBlogTable();
@@ -36,7 +48,7 @@ class Db_Model_Tables extends Db_Model_Wrapper {
     }
 
     public function createUsersTable() {
-        $this->connect();
+        $this->_db = Bootstrap::getConnection();
         $sql = "CREATE TABLE IF NOT EXISTS users (
           id INT NOT NULL AUTO_INCREMENT,
           firstname VARCHAR(30) NOT NULL,
@@ -52,7 +64,7 @@ class Db_Model_Tables extends Db_Model_Wrapper {
     }
 
     public function createAdminTable() {
-        $this->connect();
+        Bootstrap::getConnection();
         $sql = "CREATE TABLE IF NOT EXISTS admin (
           id INT(10) NOT NULL AUTO_INCREMENT,
           name VARCHAR(30) NOT NULL,
@@ -65,7 +77,7 @@ class Db_Model_Tables extends Db_Model_Wrapper {
     }
 
     public function createBlogTable() {
-        $this->connect();
+        Bootstrap::getConnection();
         $sql = "CREATE TABLE IF NOT EXISTS blog (
           id INT(10) NOT NULL AUTO_INCREMENT,
           author VARCHAR(30) NOT NULL,
@@ -81,7 +93,7 @@ class Db_Model_Tables extends Db_Model_Wrapper {
     }
 
     public function createCommentsTable() {
-        $this->connect();
+        Bootstrap::getConnection();
         $sql = "CREATE TABLE IF NOT EXISTS comments (
           id INT(10) NOT NULL AUTO_INCREMENT,
           comment VARCHAR(255) NOT NULL,
@@ -94,7 +106,7 @@ class Db_Model_Tables extends Db_Model_Wrapper {
     }
 
     public function addBlogForeignKey() {
-        $this->connect();
+        Bootstrap::getConnection();
         $sql = "ALTER TABLE blog
           ADD CONSTRAINT FK_blog
           FOREIGN KEY (author) REFERENCES admin(name)
@@ -104,7 +116,7 @@ class Db_Model_Tables extends Db_Model_Wrapper {
     }
 
     public function addCommentsForeignKey() {
-        $this->connect();
+        Bootstrap::getConnection();
         $sql = "ALTER TABLE comments
           ADD CONSTRAINT FK_comments
           FOREIGN KEY (blogid) REFERENCES blog(id)
@@ -114,7 +126,7 @@ class Db_Model_Tables extends Db_Model_Wrapper {
     }
 
     public function loadSampleAdmin() {
-        $this->connect();
+        Bootstrap::getConnection();
         $sql = "INSERT INTO admin (name, email, password)
           VALUES ('Rocky Squirrel', 'rocky@blueacorn.com', sha1('acorn'))";
         $stmt = $this->_db->prepare($sql);
@@ -122,18 +134,18 @@ class Db_Model_Tables extends Db_Model_Wrapper {
     }
 
     public function loadSampleBlog() {
-        $this->connect();
+        Bootstrap::getConnection();
         $sql = "INSERT INTO blog (author, content, date, image, title, url)
           VALUES ('Rocky Squirrel', 'sample.phtml', '05/20/15', 'blueacorn.jpg', 'Sample Blog Entry',
-          'application.dev/blog')";
+          'template/page/sample.phtml')";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
     }
 
     public function loadSampleComments() {
-        $this->connect();
+        Bootstrap::getConnection();
         $sql = "INSERT INTO comments (comment, date, blogid)
-          VALUES ('comments.phtml', '05/20/15', '33')";
+          VALUES ('comments.phtml', '05/20/15', '1')";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
     }
