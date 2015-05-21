@@ -10,10 +10,13 @@ final class Bootstrap {
 
     protected static $_request;
     protected static $_response;
+    protected static $_db;
 
     public static function run() {
 
         session_start();
+        self::dbConnection();
+        self::buildTables();
         self::buildRequest();
         self::buildResponse();
         self::getRequest()
@@ -34,6 +37,18 @@ final class Bootstrap {
             $front->addRoutes($routerInstance);
         }
         $front->dispatch();
+    }
+
+    public static function dbConnection() {
+        static::$_db = Db_Model_Connection::getInstance();
+    }
+
+    public static function getConnection() {
+        return static::$_db;
+    }
+
+    public static function buildTables() {
+        return Cms_Model_Tables::getInstance();
     }
 
     public static function buildRequest() {
