@@ -2,28 +2,39 @@
 
 class Db_Model_Wrapper {
 
-    protected $_db;
+//    static $instance = null;
 
-    public function construct() {}
-
-    protected function connect() {
-        if(!$this->_db instanceof PDO) {
-            $this->_db = Db_Model_Connection::getInstance();
+    public static function getInstance() {
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new static();
         }
+
+        return $instance;
     }
+    private function __construct() {}
+
+//    public static function getInstance() {
+//
+//        if (null === self::$instance) {
+//            self::$instance = new static();
+//        }
+//
+//        return self::$instance;
+//    }
 
     public function select($table, $id=null, $fieldname=null) {
-        $this->connect();
+        $this->_db = Bootstrap::getConnection();
         if($fieldname == null) {
             $pk = $this->getPrimaryKeyName($table);
-            $sql = "SELECT * FROM $table WHERE $pk =:id";
+            $sql = "SELECT * FROM $table WHERE $pk = '$id'";
         } else {
-            $sql = "SELECT * FROM $table WHERE $fieldname =:id";
+            $sql = "SELECT * FROM $table WHERE $fieldname = '$id'";
         }
         $stmt = $this->_db->prepare($sql);
-        $stmt->bindParam(':id', $id);
+        //$stmt->bindParam(':id', $id);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
     }
 
     public function insert($table, $values) {
@@ -44,7 +55,7 @@ class Db_Model_Wrapper {
     }
 
     public function update($table, $fieldname, $value, $id) {
-        $this->connect();
+        $this->_db = Bootstrap::getConnection();
         $pk = $this->getPrimaryKeyName($table);
         $sql = "UPDATE $table SET $fieldname = '$value' WHERE $pk = :id";
         $stmt = $this->_db->prepare($sql);
@@ -53,7 +64,7 @@ class Db_Model_Wrapper {
     }
 
     public function delete($table, $id) {
-        $this->connect();
+        $this->_db = Bootstrap::getConnection();
         $pk = $this->getPrimaryKeyName($table);
         $sql = "DELETE FROM $table WHERE $pk = :id";
         $stmt = $this->_db->prepare($sql);
@@ -62,7 +73,7 @@ class Db_Model_Wrapper {
     }
 
     public function getPrimaryKeyName($table) {
-        $this->connect();
+        $this->_db = Bootstrap::getConnection();
         $sql = "SHOW KEYS FROM $table WHERE Key_name = 'PRIMARY'";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
