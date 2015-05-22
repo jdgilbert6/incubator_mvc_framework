@@ -48,4 +48,8 @@ class Core_Request extends Core_Object {
     {
         $this->_module = $module;
     }
+
+    public function redirect($url) {
+        header('Location:'. $url);
+    }
 }
