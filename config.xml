@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config>
+    <routes>
+        <standard>
+            <module>Core_Controller_Router_Standard</module>
+        </standard>
+    </routes>
+    <database>
+        <host>localhost</host>
+        <dbname>application</dbname>
+        <user>root</user>
+        <password>password</password>
+    </database>
+    <!-- Todo -->
+    <!--
+     Move to core module config.xml.
+     If not setup, then run sql file in php and then update setup node to 1
+
+    -->
+    <table>
+        <setup>0</setup>
+    </table>
+</config>
