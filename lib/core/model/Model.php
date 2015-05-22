@@ -25,7 +25,6 @@ class Core_Model_Model extends Core_Object {
             $this->_data[$key] = $value;
             $this->_origData[$key] = $value;
         }
-        var_dump($this);
         return $this;
     }
 
