@@ -27,6 +27,8 @@ class Cms_Model_Access extends Core_Model_Model {
 
         if($email === $login && $password === $pass)
             Core_Session::setSessionVariable('admin', 'logged-in', true);
+            $this->_getRequest()->redirect('application.dev/cms/index/index');
+
     }
 
     public function logout() {
