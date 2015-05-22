@@ -54,9 +54,9 @@ class Cms_Model_Tables {
           firstname VARCHAR(30) NOT NULL,
           lastname VARCHAR(30) NOT NULL,
           email VARCHAR(255) NOT NULL,
-          username VARCHAR(30) NOT NULL,
           password VARCHAR(40) NOT NULL,
-          PRIMARY KEY(id))
+          PRIMARY KEY(id),
+          UNIQUE (firstname, lastname, email, password))
           ENGINE=INNODB";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
@@ -70,7 +70,8 @@ class Cms_Model_Tables {
           name VARCHAR(30) NOT NULL,
           email VARCHAR(255) NOT NULL,
           password VARCHAR(40) NOT NULL,
-          PRIMARY KEY(id))
+          PRIMARY KEY(id),
+          UNIQUE (name, email, password))
           ENGINE=INNODB";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
@@ -86,7 +87,8 @@ class Cms_Model_Tables {
           content MEDIUMTEXT NOT NULL,
           image VARCHAR(100) NOT NULL,
           url VARCHAR(100) NOT NULL,
-          PRIMARY KEY(id))
+          PRIMARY KEY(id),
+          UNIQUE (title, url))
           ENGINE=INNODB";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
@@ -99,7 +101,8 @@ class Cms_Model_Tables {
           comment VARCHAR(255) NOT NULL,
           date VARCHAR(30) NOT NULL,
           blogid INT(10) NOT NULL,
-          PRIMARY KEY(id))
+          PRIMARY KEY(id),
+          UNIQUE (comment))
           ENGINE=INNODB";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
@@ -127,7 +130,7 @@ class Cms_Model_Tables {
 
     public function loadSampleAdmin() {
         Bootstrap::getConnection();
-        $sql = "INSERT INTO admin (name, email, password)
+        $sql = "INSERT IGNORE INTO admin (name, email, password)
           VALUES ('Rocky Squirrel', 'rocky@blueacorn.com', sha1('acorn'))";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
@@ -135,7 +138,7 @@ class Cms_Model_Tables {
 
     public function loadSampleBlog() {
         Bootstrap::getConnection();
-        $sql = "INSERT INTO blog (author, content, date, image, title, url)
+        $sql = "INSERT IGNORE INTO blog (author, content, date, image, title, url)
           VALUES ('Rocky Squirrel', 'sample.phtml', '05/20/15', 'blueacorn.jpg', 'Sample Blog Entry',
           'template/page/sample.phtml')";
         $stmt = $this->_db->prepare($sql);
@@ -144,7 +147,7 @@ class Cms_Model_Tables {
 
     public function loadSampleComments() {
         Bootstrap::getConnection();
-        $sql = "INSERT INTO comments (comment, date, blogid)
+        $sql = "INSERT IGNORE INTO comments (comment, date, blogid)
           VALUES ('comments.phtml', '05/20/15', '1')";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
