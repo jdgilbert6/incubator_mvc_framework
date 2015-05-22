@@ -18,9 +18,9 @@ class Core_Model_Model extends Core_Object {
     /**
      * Select an entry in a row in the table.
      */
-    public function load($param = null) {
+    public function load($column, $value) {
 
-        $result = $this->select($this->_table, $param);
+        $result = $this->select($this->_table, $column, $value);
         foreach ($result[0] as $key => $value) {
             $this->_data[$key] = $value;
             $this->_origData[$key] = $value;
@@ -78,7 +78,7 @@ class Core_Model_Model extends Core_Object {
             $pk = $this->getPrimaryKeyName($table);
             $sql = "SELECT * FROM $table WHERE $pk = '$id'";
         } else {
-            $sql = "SELECT * FROM $table WHERE $fieldname = '$id'";
+            $sql = "SELECT * FROM $table WHERE $id = '$fieldname'";
         }
         $stmt = $this->_db->prepare($sql);
         //$stmt->bindParam(':id', $id);
