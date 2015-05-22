@@ -143,11 +143,14 @@ class Core_Config {
 
     public function changeSetupValue() {
 
+        $file = BASE_PATH . '/lib/core/config.xml';
         $doc = new DOMDocument();
-        $doc->load('**/core/config.xml');
+        $doc->load($file);
         $setup = $doc->getElementsByTagName('setup');
-        $value = $setup->item(0)->nodeValue = 1;
-        $doc->saveXML();
+        $setup->item(0)->nodeValue = 1;
+        $doc->save($file);
+
+//        var_dump($value);
     }
 }
 
