@@ -7,7 +7,7 @@ class Core_Controller_Admin extends Core_Controller_Abstract {
         $admin = Core_Session::getSessionVariable('admin', 'logged-in');
 
         if($admin === false) {
-            header('Location: index.php');
+            $redirect = $this->_getRequest()->redirect('/home');
         }
     }
 }
