@@ -23,12 +23,23 @@ class Cms_Model_Access extends Core_Model_Model {
         $password = sha1($_POST['password']);
 
         $login = Bootstrap::getModel('cms/admin')->load('email', $email);
-        $pass = Bootstrap::getModel('cms/admin')->load('password', sha1($password));
+        foreach($login->_data as $key => $dbEmail) {
+            $login->_data[$key] = $dbEmail;
+//            var_dump($dbEmail);
+        }
+
+        $pass = Bootstrap::getModel('cms/admin')->load('password', $password);
+        foreach($pass->_data as $key => $value) {
+            $pass->_data[$key] = $value;
+            var_dump($pass->_data);
+        }
 
         if($login && $pass) {
             Core_Session::setSessionVariable('admin', 'logged-in', true);
+            Core_Session::setSessionVariable('admin', 'current-admin-id', $login->getId());
         } else {
-            $this->_getRequest()->redirect('/cms/index/index');
+            echo "Incorrect email and/or password.";
+            $redirect = $this->_getRequest()->redirect('/');
         }
 
     }
@@ -58,11 +69,12 @@ class Cms_Model_Access extends Core_Model_Model {
 
         if($login && $pass) {
             Core_Session::setSessionVariable('user', 'logged-in', true);
-        }
+            Core_Session::setSessionVariable('user', 'current-user-id', $login->getId());        }
     }
 
     public function logout() {
 
-        Core_Session::endSession();
+        Core_Session::setSessionVariable('user', 'logged-in', false);;
+        $request = $this->_getRequest()->redirect('/');
     }
 }
