@@ -13,8 +13,13 @@ class Cms_Controller_Index extends Core_Controller_Abstract {
     public function loginAction() {
         $login = Bootstrap::getModel('cms/access');
         $login->adminLogin();
-        $redirect = $this->_getRequest()->redirect('/home');
+        $redirect = $this->_getRequest()->redirect('/');
 
+    }
+
+    public function viewAction() {
+
+        Bootstrap::matchRoute();
     }
 
 }
