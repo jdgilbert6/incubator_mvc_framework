@@ -2,18 +2,18 @@
 
 class Cms_Model_Tables {
 
-//    static $instance = null;
+    static $instance = null;
     protected $_db = null;
 
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new static();
-        }
-
-        return $instance;
-    }
+//    public static function getInstance()
+//    {
+//        static $instance = null;
+//        if (null === $instance) {
+//            $instance = new static();
+//        }
+//
+//        return $instance;
+//    }
 
     private function __construct() {
 
@@ -25,15 +25,15 @@ class Cms_Model_Tables {
         }
     }
 
-//    public static function getInstance() {
-//
-//        if (null === self::$instance) {
-//                self::$instance = new static();
-//        }
-//
-//        return self::$instance;
-//
-//    }
+    public static function getInstance() {
+
+        if (null === self::$instance) {
+                self::$instance = new static();
+        }
+
+        return self::$instance;
+
+    }
 
     public function init() {
 
