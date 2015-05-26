@@ -21,25 +21,14 @@ class Cms_Model_Access extends Core_Model_Model {
 
         $email = $_POST['email'];
         $password = sha1($_POST['password']);
-
+        
         $login = Bootstrap::getModel('cms/admin')->load('email', $email);
-        foreach($login->_data as $key => $dbEmail) {
-            $login->_data[$key] = $dbEmail;
-//            var_dump($dbEmail);
-        }
-
-        $pass = Bootstrap::getModel('cms/admin')->load('password', $password);
-        foreach($pass->_data as $key => $value) {
-            $pass->_data[$key] = $value;
-            var_dump($pass->_data);
-        }
-
-        if($login && $pass) {
+        if(($login->_data['password']) == $password) {
             Core_Session::setSessionVariable('admin', 'logged-in', true);
-            Core_Session::setSessionVariable('admin', 'current-admin-id', $login->getId());
+            Core_Session::setSessionVariable('admin', 'admin-logged-in', $login->_data['email']);
         } else {
             echo "Incorrect email and/or password.";
-            $redirect = $this->_getRequest()->redirect('/');
+            $this->_getRequest()->redirect('/');
         }
 
     }
