@@ -34,6 +34,7 @@ class Core_Session {
 
     public static function getSessionVariable($session, $variable) {
         session_id($session);
+        session_start();
         if($_SESSION[$variable]) {
             return $_SESSION[$variable];
         }
@@ -41,7 +42,9 @@ class Core_Session {
 
     public static function setSessionVariable($session, $variable, $value) {
         session_id($session);
+        session_start();
         $_SESSION[$variable] = $value;
+        session_write_close();
     }
 
     public static function getCookie($name = null) {
