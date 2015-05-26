@@ -20,13 +20,14 @@ class Cms_Controller_Account extends Core_Controller_Abstract {
 
         $reg = Bootstrap::getModel('cms/access');
         $reg->adminLogin();
+
     }
 
     public function logoutAction() {
 
     }
 
-    public function validateAction() {
+    public function validate() {
 
     }
 }
