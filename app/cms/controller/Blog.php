@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: josh
- * Date: 5/26/15
- * Time: 5:20 PM
- */
+
+class Cms_Controller_Blog extends Core_Controller_Abstract {
+
+    public function viewAction() {
+
+        Bootstrap::matchRoute();
+    }
+}
