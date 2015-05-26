@@ -12,7 +12,6 @@ class Core_Model_Model extends Core_Object {
      */
     public function __construct() {
 
-//        $this->_db = Bootstrap::getConnection();
     }
 
     /**
@@ -21,9 +20,15 @@ class Core_Model_Model extends Core_Object {
     public function load($column, $value) {
 
         $result = $this->select($this->_table, $column, $value);
-        foreach ($result[0] as $key => $value) {
-            $this->_data[$key] = $value;
-            $this->_origData[$key] = $value;
+        if(empty($result[0])) {
+            return false;
+        } else {
+            foreach ($result[0] as $key => $value) {
+                $this->_data[$key] = $value;
+                $this->_origData[$key] = $value;
+            }
+
+
         }
         return $this;
     }
@@ -64,12 +69,16 @@ class Core_Model_Model extends Core_Object {
         }
     }
 
-    public function getTableName() {
+    public function getTableName($param = null) {
 
-        $instanceName = get_class($this);
-        $classNameArray = explode('_', $instanceName);
-        $lastWord = end($classNameArray);
-        $this->_table = strtolower($lastWord);
+        if($param === null) {
+            $instanceName = get_class($this);
+            $classNameArray = explode('_', $instanceName);
+            $lastWord = end($classNameArray);
+            $this->_table = strtolower($lastWord);
+        } else {
+            $this->_table = $param;
+        }
     }
 
     public function select($table, $id=null, $fieldname=null) {
