@@ -90,4 +90,8 @@ final class Bootstrap {
 
         return new $className();
     }
+
+    public static function getBaseUrl() {
+        return BASE_URL;
+    }
 }
