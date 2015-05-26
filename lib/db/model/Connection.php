@@ -5,27 +5,27 @@ class Db_Model_Connection {
     /**
      * Singleton instance
      */
-//    static $instance = null;
-
-    public static function getInstance()
-    {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = self::_dbConnect();
-        }
-
-        return $instance;
-    }
-    private function __construct() {}
+    static $instance = null;
 
 //    public static function getInstance() {
-//
-//        if (null === self::$instance) {
-//            self::$instance = self::_dbConnect();
+//        static $instance = null;
+//        if (null === $instance) {
+//            $instance = self::_dbConnect();
 //        }
 //
-//        return self::$instance;
+//        return $instance;
 //    }
+
+    private function __construct() {}
+
+    public static function getInstance() {
+
+        if (null === self::$instance) {
+            self::$instance = self::_dbConnect();
+        }
+
+        return self::$instance;
+    }
 
     /**
      * Establish connection to MySQL database

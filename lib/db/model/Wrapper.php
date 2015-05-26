@@ -2,26 +2,27 @@
 
 class Db_Model_Wrapper {
 
-//    static $instance = null;
-
-    public static function getInstance() {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new static();
-        }
-
-        return $instance;
-    }
-    private function __construct() {}
+    static $instance = null;
 
 //    public static function getInstance() {
-//
-//        if (null === self::$instance) {
-//            self::$instance = new static();
+//        static $instance = null;
+//        if (null === $instance) {
+//            $instance = new static();
 //        }
 //
-//        return self::$instance;
+//        return $instance;
 //    }
+
+    private function __construct() {}
+
+    public static function getInstance() {
+
+        if (null === self::$instance) {
+            self::$instance = new static();
+        }
+
+        return self::$instance;
+    }
 
     public function select($table, $id=null, $fieldname=null) {
         $this->_db = Bootstrap::getConnection();

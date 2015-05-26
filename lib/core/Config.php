@@ -8,27 +8,27 @@ class Core_Config {
     /**
      * Singleton instance
      */
-//    static $instance = null;
+    static $instance = null;
 
-    public static function getInstance() {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new static();
-        }
-
-        return $instance;
-    }
+//    public static function getInstance() {
+//        static $instance = null;
+//        if (null === $instance) {
+//            $instance = new static();
+//        }
+//
+//        return $instance;
+//    }
 
     private function __construct() {}
 
-//    public static function getInstance() {
-//
-//        if (null === self::$instance) {
-//            self::$instance = new static();
-//        }
-//
-//        return self::$instance;
-//    }
+    public static function getInstance() {
+
+        if (null === self::$instance) {
+            self::$instance = new static();
+        }
+
+        return self::$instance;
+    }
 
     /**
      * Provide public access to protected function _getXml
