@@ -139,8 +139,8 @@ class Cms_Model_Tables {
     public function loadSampleBlog() {
         Bootstrap::getConnection();
         $sql = "INSERT IGNORE INTO blog (author, content, date, image, title, url)
-          VALUES ('Rocky Squirrel', 'sample.phtml', '05/20/15', 'blueacorn.jpg', 'Sample Blog Entry',
-          'template/page/sample.phtml')";
+          VALUES ('rocky@blueacorn.com', 'Content', '05-20-2015', 'blueacorn.jpg', 'Sample Blog Entry',
+          'sample-blog-entry.html')";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
     }
