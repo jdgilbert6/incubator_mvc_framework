@@ -29,6 +29,13 @@ class Cms_Model_Blog extends Core_Model_Model {
 
     public function createSlug($string) {
         $slug = strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $string));
-        return $slug;
+        return $slug . '.html';
+    }
+
+    public function getSlugId($slug) {
+
+        $model = Bootstrap::getModel('core/model');
+        $model->load('url', $slug, 'blog');
+        return $model->_data['id'];
     }
 }
