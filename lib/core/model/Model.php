@@ -2,7 +2,7 @@
 
 class Core_Model_Model extends Core_Object {
 
-    protected $_table = '';
+    protected $_table;
     protected $_origData = array();
     protected $_db = null;
 
@@ -17,7 +17,11 @@ class Core_Model_Model extends Core_Object {
     /**
      * Select an entry in a row in the table.
      */
-    public function load($column, $value) {
+    public function load($column, $value, $table = null) {
+
+        if($table !== null){
+            $this->_table = $table;
+        }
 
         $result = $this->select($this->_table, $column, $value);
         if(empty($result[0])) {
@@ -69,15 +73,15 @@ class Core_Model_Model extends Core_Object {
         }
     }
 
-    public function getTableName($param = null) {
+    public function getTableName($table = null) {
 
-        if($param === null) {
+        if($table === null) {
             $instanceName = get_class($this);
             $classNameArray = explode('_', $instanceName);
             $lastWord = end($classNameArray);
             $this->_table = strtolower($lastWord);
         } else {
-            $this->_table = $param;
+            $this->_table = $table;
         }
     }
 
