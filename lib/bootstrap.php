@@ -17,8 +17,8 @@ final class Bootstrap {
         session_start();
         self::dbConnection();
         self::buildTables();
-        self::buildRequest();
-        self::buildResponse();
+        self::setRequest();
+        self::setResponse();
         self::getRequest()
             ->set('uri', $_SERVER['REQUEST_URI'])
             ->set('is_dispatched', false);
@@ -51,7 +51,7 @@ final class Bootstrap {
         return Cms_Model_Tables::getInstance();
     }
 
-    public static function buildRequest() {
+    public static function setRequest() {
         static::$_request = Core_Request::getInstance();
     }
 
@@ -59,7 +59,7 @@ final class Bootstrap {
         return static::$_request;
     }
 
-    public static function buildResponse() {
+    public static function setResponse() {
         static::$_response = Core_Response::getInstance();
     }
 
