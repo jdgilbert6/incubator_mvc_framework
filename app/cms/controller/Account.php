@@ -26,7 +26,7 @@ class Cms_Controller_Account extends Core_Controller_Abstract {
     public function loginAction() {
         $login = Bootstrap::getModel('cms/access');
         $login->adminLogin();
-        $redirect = $this->_getRequest()->redirect(BASE_URL . '/cms/admin/index');
+        $redirect = $this->_getResponse()->redirect(BASE_URL . '/cms/admin/index');
 
     }
 
