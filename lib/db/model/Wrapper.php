@@ -4,15 +4,6 @@ class Db_Model_Wrapper {
 
     static $instance = null;
 
-//    public static function getInstance() {
-//        static $instance = null;
-//        if (null === $instance) {
-//            $instance = new static();
-//        }
-//
-//        return $instance;
-//    }
-
     private function __construct() {}
 
     public static function getInstance() {

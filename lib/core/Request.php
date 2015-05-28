@@ -19,15 +19,6 @@ class Core_Request extends Core_Object {
         return self::$instance;
     }
 
-//    public static function getInstance() {
-//        static $instance = null;
-//        if (null === $instance) {
-//            $instance = new static();
-//        }
-//
-//        return $instance;
-//    }
-
     public function getController()
     {
         return $this->_controller;

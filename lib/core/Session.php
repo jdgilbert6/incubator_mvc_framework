@@ -15,15 +15,6 @@ class Core_Session {
         return self::$instance;
     }
 
-//    public static function getInstance() {
-//        static $instance = null;
-//        if (null === $instance) {
-//            $instance = new static();
-//        }
-//
-//        return $instance;
-//    }
-
     public static function endSession() {
         session_unset();
     }

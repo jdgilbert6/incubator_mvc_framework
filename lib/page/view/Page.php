@@ -3,7 +3,6 @@
 class Page_View_Page extends Page_View_Abstract {
 
     protected $_template;
-    protected $_data = array();
 
     /**
      * Page view constructor
@@ -11,7 +10,6 @@ class Page_View_Page extends Page_View_Abstract {
      * If no template is specified, the default page template will be set.
      */
     public function __construct() {
-//        $this->setTemplate('page/default');
     }
 
     /**

@@ -7,15 +7,6 @@ class Db_Model_Connection {
      */
     static $instance = null;
 
-//    public static function getInstance() {
-//        static $instance = null;
-//        if (null === $instance) {
-//            $instance = self::_dbConnect();
-//        }
-//
-//        return $instance;
-//    }
-
     private function __construct() {}
 
     public static function getInstance() {

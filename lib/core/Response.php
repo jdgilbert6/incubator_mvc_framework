@@ -17,15 +17,6 @@ class Core_Response {
         return self::$instance;
     }
 
-//    public static function getInstance(){
-//        static $instance = null;
-//        if (null === $instance) {
-//            $instance = new static();
-//        }
-//
-//        return $instance;
-//    }
-
     public function getHeader() {
         return $this->_header;
     }
