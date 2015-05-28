@@ -13,7 +13,7 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
 
         $post = Bootstrap::getModel('cms/blog');
         $post->createBlogPost();
-        $redirect = $this->_getRequest()->redirect('/admin/admin/index');
+        $redirect = $this->_getResponse()->redirect('/admin/admin/index');
 
     }
 
@@ -22,7 +22,7 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
         $admin = Core_Session::getSessionVariable('admin', 'logged-in');
 
         if($admin === false) {
-            $redirect = $this->_getRequest()->redirect('/home');
+            $redirect = $this->_getResponse()->redirect('/home');
         }
     }
 }
