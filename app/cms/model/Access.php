@@ -10,7 +10,7 @@ class Cms_Model_Access extends Core_Model_Model {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $db = Bootstrap::getModel('cms/admin');
+        $db = Bootstrap::getModel('admin/admin');
         $db->set('name', $name);
         $db->set('email', $email);
         $db->set('password', sha1($password));
