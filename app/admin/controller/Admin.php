@@ -1,6 +1,6 @@
 <?php
 
-class Cms_Controller_Admin extends Core_Controller_Abstract {
+class Admin_Controller_Admin extends Core_Controller_Abstract {
 
     public function indexAction() {
 
@@ -13,7 +13,16 @@ class Cms_Controller_Admin extends Core_Controller_Abstract {
 
         $post = Bootstrap::getModel('cms/blog');
         $post->createBlogPost();
-        $redirect = $this->_getRequest()->redirect('/cms/admin/index');
+        $redirect = $this->_getRequest()->redirect('/admin/admin/index');
 
+    }
+
+    public function isAdminLoggedIn() {
+
+        $admin = Core_Session::getSessionVariable('admin', 'logged-in');
+
+        if($admin === false) {
+            $redirect = $this->_getRequest()->redirect('/home');
+        }
     }
 }
