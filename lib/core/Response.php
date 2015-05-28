@@ -33,8 +33,8 @@ class Core_Response {
         $this->_content = $content;
     }
 
-    public function redirect() {
-
+    public function redirect($url) {
+        header('Location:'. $url);
     }
 
     public function send() {
