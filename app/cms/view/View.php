@@ -2,40 +2,20 @@
 
 class Cms_View_View extends Page_View_Page {
 
-    protected $_title;
-    protected $_header;
-    protected $_content;
-    protected $_footer;
+    public function __construct() {
 
-    public function getTitle() {
-        return $this->_title;
+        $this->setHeader($this->_header);
+        $this->setContent($this->_content);
+        $this->setFooter($this->_footer);
     }
 
-    public function setTitle($title) {
-        $this->setTemplate($title);
+    public function buildPage() {
+
+
     }
 
-    public function getHeader() {
-        return $this->_header;
-    }
+    public function renderPage($view) {
 
-    public function setHeader($header) {
-        $this->_header = $header;
-    }
-
-    public function getContent() {
-        return $this->_content;
-    }
-
-    public function setContent($content) {
-        $this->_content = $content;
-    }
-
-    public function getFooter() {
-        return $this->_footer;
-    }
-
-    public function setFooter($footer) {
-        $this->_footer = $footer;
+        Bootstrap::getView($view);
     }
 }
