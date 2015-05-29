@@ -1,9 +1,10 @@
 <?php
 
-class Cms_Controller_Blog extends Core_Controller_Abstract {
+class Blog_Controller_Blog extends Core_Controller_Abstract {
 
     public function viewAction() {
 
-        Bootstrap::matchRoute();
+        $post = Bootstrap::getModel('blog/blog');
+        $post->getPostArray();
     }
 }
