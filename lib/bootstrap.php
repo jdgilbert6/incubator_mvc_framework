@@ -91,7 +91,11 @@ final class Bootstrap {
         return new $className();
     }
 
-    public static function getBaseUrl() {
-        return BASE_URL;
+    public static function getUrl($uri = null) {
+        if($uri !== null) {
+            return BASE_URL . $uri;
+        } else {
+            return BASE_URL;
+        }
     }
 }
