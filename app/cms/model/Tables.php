@@ -5,16 +5,6 @@ class Cms_Model_Tables {
     static $instance = null;
     protected $_db = null;
 
-//    public static function getInstance()
-//    {
-//        static $instance = null;
-//        if (null === $instance) {
-//            $instance = new static();
-//        }
-//
-//        return $instance;
-//    }
-
     private function __construct() {
 
         $setup = Bootstrap::getConfig()->tableSetup();
@@ -37,7 +27,6 @@ class Cms_Model_Tables {
 
     public function init() {
 
-//        Bootstrap::getConnection();
         $this->createUsersTable();
         $this->createAdminTable();
         $this->createBlogTable();
@@ -148,7 +137,7 @@ class Cms_Model_Tables {
     public function loadSampleComments() {
         Bootstrap::getConnection();
         $sql = "INSERT IGNORE INTO comments (comment, date, blogid)
-          VALUES ('comments.phtml', '05/20/15', '1')";
+          VALUES ('Comment', '05/20/15', '1')";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
     }
