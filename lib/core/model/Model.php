@@ -87,7 +87,9 @@ class Core_Model_Model extends Core_Object {
 
     public function select($table, $id=null, $fieldname=null) {
         $this->_db = Bootstrap::getConnection();
-        if($fieldname == null) {
+        if($id == null && $fieldname == null) {
+            $sql = "SELECT * FROM $table";
+        } elseif($fieldname == null) {
             $pk = $this->getPrimaryKeyName($table);
             $sql = "SELECT * FROM $table WHERE $pk = '$id'";
         } else {
