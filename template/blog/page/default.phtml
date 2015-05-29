@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <?php echo $this->addBlock('title'); ?>
+    <link rel="stylesheet" href="<?php echo $this->addAsset('css/bootstrap.css')?>">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="<?php echo $this->addAsset('js/')?>"></script>
+</head>
+<header>
+<?php echo $this->getHeader() ?>
+</header>
+<body>
+<?php echo $this->getContent() ?>
+<!--<img src="--><?php //echo $this->addAsset('image/blueacorn.jpg')?><!--"/>-->
+</body>
+<?php echo $this->getFooter() ?>
+</html>
