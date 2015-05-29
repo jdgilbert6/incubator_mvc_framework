@@ -2,20 +2,14 @@
 
 class Cms_View_View extends Page_View_Page {
 
-    public function __construct() {
-
-        $this->setHeader($this->_header);
-        $this->setContent($this->_content);
-        $this->setFooter($this->_footer);
-    }
-
     public function buildPage() {
 
-
+        $this->_header = TMP_PATH . DS . '/blog/block/header';
+        $this->_footer = TMP_PATH . DS . '/blog/block/footer';
     }
 
-    public function renderPage($view) {
+    public function renderPage() {
 
-        Bootstrap::getView($view);
     }
+    
 }
