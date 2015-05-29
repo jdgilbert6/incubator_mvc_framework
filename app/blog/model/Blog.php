@@ -27,6 +27,11 @@ class Cms_Model_Blog extends Core_Model_Model {
 
     }
 
+    public function getLastPost() {
+
+
+    }
+
     public function createSlug($string) {
         $slug = strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $string));
         return $slug . '.html';

@@ -1,13 +1,3 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Register Me!</title>
-    <link rel="stylesheet" href="<?php echo $this->addAsset('css')?>">
-    <script src="<?php echo $this->addAsset('js')?>"></script>
-</head>
-<body>
-<h1>Register</h1>
-<p>Please complete all fields and click Register.</p>
 <form id="registration" method="POST" action="cms/account/register">
     <label for="firstname">First Name</label><em>*</em>
     <input id="firstname" type="text" name="name" class="required"/></br>
@@ -20,6 +10,3 @@
     <input id="is-active" type="hidden" name="is-active" value="1" />
     <button type="button" class="register-button">Register</button>
 </form>
-</body>
-
-</html>

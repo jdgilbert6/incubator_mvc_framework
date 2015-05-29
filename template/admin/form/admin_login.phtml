@@ -1,14 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <?php $this->addBlock('title'); ?>
-    <link rel="stylesheet" href="<?php echo $this->addAsset('css')?>">
-    <script src="<?php echo $this->addAsset('js')?>"></script>
-</head>
-<body>
-<?php $this->addBlock('login_header') ?>
-<form id="login" method="POST" action="/cms/account/index">
+<form id="login" method="POST" action="/cms/account/login">
     <label for="email">Email</label><em>*</em>
     <input id="email" type="email" name="email" class="required"/></br>
     <label for="password">Password</label><em>*</em>
@@ -16,9 +6,6 @@
     <input id="is-active" type="hidden" name="is-active" value="1" />
     <button type="submit" class="login-button">Login</button>
 </form>
-<p>Not a member? Click button to register.</p>
 <form id="register" method="POST" action="/cms/account/register">
     <button type="submit" class="register-button">Register</button>
 </form>
-</body>
-</html>
