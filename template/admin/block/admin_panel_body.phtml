@@ -1,0 +1,16 @@
+<body>
+<div class="row">
+    <div class="#">
+        <h1>Admin Panel</h1>
+        <p>Hello, <?php echo Core_Session::getSessionVariable('admin', 'admin-logged-in')?>! What would you like to do?</p>
+        <div class="#">
+            <ul class="button-group">
+            <li><a href="http://application.dev/admin/admin/create" class="button">Create Post</a></li>
+                <li><a href="#" class="button">Edit Post</a></li>
+                <li><a href="#" class="button">Delete Post</a></li>
+            </ul>
+        </div>
+        <!-- Add list of blog posts here -->
+    </div>
+</div>
+</body>
