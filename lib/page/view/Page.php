@@ -3,6 +3,10 @@
 class Page_View_Page extends Page_View_Abstract {
 
     protected $_template;
+    protected $_title;
+    protected $_header;
+    protected $_content;
+    protected $_footer;
 
     /**
      * Page view constructor
@@ -32,11 +36,11 @@ class Page_View_Page extends Page_View_Abstract {
 
         if(!empty($template)) {
             $pathArray = explode('/', $template);
-            $path = TMP_PATH . DS . $pathArray[0] . DS . $pathArray[1] . '.phtml';
+            $path = TMP_PATH . DS . $pathArray[0] . DS . $pathArray[1] . DS . $pathArray[2] . '.phtml';
             if(file_exists(strtolower($path))) {
                 $this->_template = $path;
             } else {
-                $this->_template = TMP_PATH . DS . 'page' . DS . 'error.phtml';
+                throw new Exception('The specified template does not exist.');
             }
         }
     }
@@ -92,5 +96,49 @@ class Page_View_Page extends Page_View_Abstract {
         $assetFile = strtolower(array_pop($assetArray));
         $assetPath = ASS_PATH . DS . $type . DS . $assetFile;
         return $assetPath;
+    }
+
+    public function addForm($form = null) {
+
+        if(array_key_exists($form, $this->_data)) {
+            $formFile = $this->_data[$form];
+            $formPath = TMP_PATH . DS . 'form' . DS . $formFile . '.phtml';
+        } else {
+            $formFile = $form . '.phtml';
+            $formPath = stream_resolve_include_path(TMP_PATH . DS . 'form' . DS . $formFile);
+        }
+        include_once $formPath;
+    }
+
+    public function getTitle() {
+        return $this->_title;
+    }
+
+    public function setTitle($title) {
+        $this->_title = $title;
+    }
+
+    public function getHeader() {
+        return $this->_header;
+    }
+
+    public function setHeader($header) {
+        $this->_header = $header;
+    }
+
+    public function getContent() {
+        return $this->_content;
+    }
+
+    public function setContent($content) {
+        $this->_content = $content;
+    }
+
+    public function getFooter() {
+        return $this->_footer;
+    }
+
+    public function setFooter($footer) {
+        $this->_footer = $footer;
     }
 }
