@@ -1,52 +1,28 @@
-<body>
-<div class="row">
-    <div class="#">
+<div id="wrap">
+    <div class="container">
         <h1>Admin Panel</h1>
         <p>Hello, <?php echo Core_Session::getSessionVariable('admin', 'admin-logged-in')?>!</p>
         <div class="#">
-            <ul class="button-group">
-                <li><a href=<?php echo Bootstrap::getUrl('/admin/admin/post')?> class="button">Create Post</a></li>
-            </ul>
+            <input id="is-active" type="hidden" name="is-active" value="1" />
+            <button type="submit" class="btn btn-default">Create Post</button>
         </div>
         <div>
             <h3>Blog Posts</h3>
             <div>
-                <h4>Blog Post Title #1</h4>
-                <p>Blog Content</p>
+                <?php foreach($posts as $post):?>
+                <h4><?php echo $post->get('title')?></h4>
+                <p><?php echo $post->get('content')?></p>
                 <div>
-                    <input id="is-active" type="hidden" name="is-active" value="1" />
-                    <button class="edit-button">Edit Post</button>
+                    <a href="<?php echo BASE_URL . '/admin/admin/update'?>"
+                       class="btn btn-warning" role="'button">Edit Post</a>
                 </div>
                 <div>
-                    <input id="is-active" type="hidden" name="is-active" value="1" />
-                    <button class="delete-button">Delete Post</button>
+                    <a href="<?php echo BASE_URL . '/admin/admin/delete'?>"
+                       class="btn btn-danger" role="'button">Delete Post</a>
                 </div>
-            </div>
-            <div>
-                <h4>Blog Post Title #2</h4>
-                <p>Blog Content</p>
-                <div>
-                    <input id="is-active" type="hidden" name="is-active" value="1" />
-                    <button class="edit-button">Edit Post</button>
-                </div>
-                <div>
-                    <input id="is-active" type="hidden" name="is-active" value="1" />
-                    <button class="delete-button">Delete Post</button>
-                </div>
-            </div>
-            <div>
-                <h4>Blog Post Title #3</h4>
-                <p>Blog Content</p>
-                <div>
-                    <input id="is-active" type="hidden" name="is-active" value="1" />
-                    <button class="edit-button">Edit Post</button>
-                </div>
-                <div>
-                    <input id="is-active" type="hidden" name="is-active" value="1" />
-                    <button class="delete-button">Delete Post</button>
-                </div>
+                <?php endforeach ?>
             </div>
         </div>
     </div>
 </div>
-</body>
+
