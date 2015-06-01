@@ -1,6 +1,6 @@
 <?php
 
-class Core_Controller_Account extends Core_Controller_Abstract {
+class Base_Controller_Account extends Core_Controller_Abstract {
 
     public function indexAction() {
 
@@ -26,7 +26,7 @@ class Core_Controller_Account extends Core_Controller_Abstract {
     public function loginAction() {
         $login = Bootstrap::getModel('base/access');
         $login->adminLogin();
-        $redirect = $this->_getResponse()->redirect(BASE_URL . '/base/admin/index');
+        $redirect = $this->_getResponse()->redirect(BASE_URL . '/admin/admin/index');
 
     }
 
