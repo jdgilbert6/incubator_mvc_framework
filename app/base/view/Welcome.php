@@ -1,6 +1,6 @@
 <?php
 
-class Cms_View_Welcome extends Cms_View_View {
+class Base_View_Welcome extends Base_View_View {
 
     public function __construct() {
 
