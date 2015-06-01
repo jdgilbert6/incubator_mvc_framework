@@ -26,11 +26,20 @@ class Admin_Model_Admin extends Core_Model_Model {
         $this->save();
     }
 
+    public function updateBlogPost() {
+
+
+    }
+
+    public function deleteBlogPost() {
+
+    }
+
     public function getPostArray() {
 
-        $posts = $this->load('title', 'blog');
+        $posts = $this->select('blog');
+        var_dump($posts);
         return $posts;
-
     }
 
     public function createSlug($string) {
@@ -41,7 +50,7 @@ class Admin_Model_Admin extends Core_Model_Model {
 
     public function getSlugId($slug) {
 
-        $model = Bootstrap::getModel('base/model');
+        $model = Bootstrap::getModel('core/model');
         $model->load('url', $slug, 'blog');
         return $model->_data['id'];
     }
