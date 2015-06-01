@@ -1,6 +1,6 @@
 <?php
 
-class Cms_Model_Tables {
+class Base_Model_Tables {
 
     static $instance = null;
     protected $_db = null;
