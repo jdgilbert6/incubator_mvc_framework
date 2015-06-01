@@ -4,16 +4,14 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
 
     public function indexAction() {
 
-        $page = Bootstrap::getView('page/page');
-        $page->setTemplate('admin/block/admin_panel_body');
-        $page->renderTemplate();
+        $view = Bootstrap::getView('admin/admin');
+        return $view;
     }
 
     public function createAction() {
 
-        $new = Bootstrap::getView('page/page');
-        $new->setTemplate('admin/form/create_post');
-        $new->renderTemplate();
+        $view = Bootstrap::getView('admin/create');
+        return $view;
     }
 
     public function postAction() {
@@ -22,6 +20,12 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
         $post->createBlogPost();
         $redirect = $this->_getResponse()->redirect('/admin/admin/index');
 
+    }
+
+    public function loginAction() {
+
+        $view = Bootstrap::getView('admin/login');
+        return $view;
     }
 
     public function isAdminLoggedIn() {
