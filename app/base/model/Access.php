@@ -22,7 +22,7 @@ class Cms_Model_Access extends Core_Model_Model {
         $email = $_POST['email'];
         $password = sha1($_POST['password']);
         
-        $login = Bootstrap::getModel('cms/admin')->load('email', $email);
+        $login = Bootstrap::getModel('base/admin')->load('email', $email);
         if(($login->_data['password']) == $password) {
             Core_Session::setSessionVariable('admin', 'logged-in', true);
             Core_Session::setSessionVariable('admin', 'admin-logged-in', $login->_data['email']);
@@ -40,7 +40,7 @@ class Cms_Model_Access extends Core_Model_Model {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $db = Bootstrap::getModel('cms/users');
+        $db = Bootstrap::getModel('base/users');
         $db->set('firstname', $firstname);
         $db->set('lastname', $lastname);
         $db->set('email', $email);
@@ -53,8 +53,8 @@ class Cms_Model_Access extends Core_Model_Model {
         $email = $_POST['email'];
         $password = sha1($_POST['password']);
 
-        $login = Bootstrap::getModel('cms/users')->load('email', $email);
-        $pass = Bootstrap::getModel('cms/users')->load('password', sha1($password));
+        $login = Bootstrap::getModel('base/users')->load('email', $email);
+        $pass = Bootstrap::getModel('base/users')->load('password', sha1($password));
 
         if($login && $pass) {
             Core_Session::setSessionVariable('user', 'logged-in', true);

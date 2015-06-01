@@ -1,6 +1,6 @@
 <?php
 
-class Cms_Controller_Account extends Core_Controller_Abstract {
+class Core_Controller_Account extends Core_Controller_Abstract {
 
     public function indexAction() {
 
@@ -24,15 +24,15 @@ class Cms_Controller_Account extends Core_Controller_Abstract {
     }
 
     public function loginAction() {
-        $login = Bootstrap::getModel('cms/access');
+        $login = Bootstrap::getModel('base/access');
         $login->adminLogin();
-        $redirect = $this->_getResponse()->redirect(BASE_URL . '/cms/admin/index');
+        $redirect = $this->_getResponse()->redirect(BASE_URL . '/base/admin/index');
 
     }
 
     public function logoutAction() {
 
-        $model = Bootstrap::getModel('cms/access');
+        $model = Bootstrap::getModel('base/access');
         $model->logout();
     }
 
