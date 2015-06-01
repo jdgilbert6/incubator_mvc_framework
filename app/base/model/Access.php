@@ -1,6 +1,6 @@
 <?php
 
-class Cms_Model_Access extends Core_Model_Model {
+class Base_Model_Access extends Core_Model_Model {
 
     public function __construct() {}
 
@@ -22,7 +22,7 @@ class Cms_Model_Access extends Core_Model_Model {
         $email = $_POST['email'];
         $password = sha1($_POST['password']);
         
-        $login = Bootstrap::getModel('base/admin')->load('email', $email);
+        $login = Bootstrap::getModel('admin/admin')->load('email', $email);
         if(($login->_data['password']) == $password) {
             Core_Session::setSessionVariable('admin', 'logged-in', true);
             Core_Session::setSessionVariable('admin', 'admin-logged-in', $login->_data['email']);
