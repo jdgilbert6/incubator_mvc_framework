@@ -2,15 +2,51 @@
 <div class="row">
     <div class="#">
         <h1>Admin Panel</h1>
-        <p>Hello, <?php echo Core_Session::getSessionVariable('admin', 'admin-logged-in')?>! What would you like to do?</p>
+        <p>Hello, <?php echo Core_Session::getSessionVariable('admin', 'admin-logged-in')?>!</p>
         <div class="#">
             <ul class="button-group">
-            <li><a href="http://application.dev/admin/admin/create" class="button">Create Post</a></li>
-                <li><a href="#" class="button">Edit Post</a></li>
-                <li><a href="#" class="button">Delete Post</a></li>
+                <li><a href=<?php echo Bootstrap::getUrl('/admin/admin/post')?> class="button">Create Post</a></li>
             </ul>
         </div>
-        <!-- Add list of blog posts here -->
+        <div>
+            <h3>Blog Posts</h3>
+            <div>
+                <h4>Blog Post Title #1</h4>
+                <p>Blog Content</p>
+                <div>
+                    <input id="is-active" type="hidden" name="is-active" value="1" />
+                    <button class="edit-button">Edit Post</button>
+                </div>
+                <div>
+                    <input id="is-active" type="hidden" name="is-active" value="1" />
+                    <button class="delete-button">Delete Post</button>
+                </div>
+            </div>
+            <div>
+                <h4>Blog Post Title #2</h4>
+                <p>Blog Content</p>
+                <div>
+                    <input id="is-active" type="hidden" name="is-active" value="1" />
+                    <button class="edit-button">Edit Post</button>
+                </div>
+                <div>
+                    <input id="is-active" type="hidden" name="is-active" value="1" />
+                    <button class="delete-button">Delete Post</button>
+                </div>
+            </div>
+            <div>
+                <h4>Blog Post Title #3</h4>
+                <p>Blog Content</p>
+                <div>
+                    <input id="is-active" type="hidden" name="is-active" value="1" />
+                    <button class="edit-button">Edit Post</button>
+                </div>
+                <div>
+                    <input id="is-active" type="hidden" name="is-active" value="1" />
+                    <button class="delete-button">Delete Post</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
