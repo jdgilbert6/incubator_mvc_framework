@@ -118,27 +118,19 @@ class Page_View_Page extends Page_View_Abstract {
         $this->_title = $title;
     }
 
-    public function getHeader() {
-        return $this->_header;
-    }
-
-    public function setHeader($header) {
-        $this->_header = $header;
+    public function setHeader() {
+        $this->_header = TMP_PATH . DS . 'header.phtml';
     }
 
     public function getContent() {
         return $this->_content;
     }
 
-    public function setContent($content) {
-        $this->_content = $content;
-    }
+//    public function setContent($content) {
+//        $this->_content = $content;
+//    }
 
-    public function getFooter() {
-        return $this->_footer;
-    }
-
-    public function setFooter($footer) {
-        $this->_footer = $footer;
+    public function setFooter() {
+        $this->_footer = TMP_PATH . DS . 'footer.phtml';
     }
 }
