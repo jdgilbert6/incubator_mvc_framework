@@ -48,7 +48,7 @@ final class Bootstrap {
     }
 
     public static function buildTables() {
-        return Cms_Model_Tables::getInstance();
+        return Base_Model_Tables::getInstance();
     }
 
     public static function setRequest() {
