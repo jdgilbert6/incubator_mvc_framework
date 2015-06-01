@@ -1,11 +1,8 @@
-<form id="login" method="POST" action="/cms/account/login">
+<form id="login" method="POST" action="/base/account/login">
     <label for="email">Email</label><em>*</em>
-    <input id="email" type="email" name="email" class="required"/></br>
     <label for="password">Password</label><em>*</em>
     <input id="password" type="password" name="password" class="required"/></br>
     <input id="is-active" type="hidden" name="is-active" value="1" />
     <button type="submit" class="login-button">Login</button>
 </form>
-<form id="register" method="POST" action="/cms/account/register">
-    <button type="submit" class="register-button">Register</button>
-</form>
+
