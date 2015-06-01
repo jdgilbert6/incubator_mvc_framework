@@ -1,4 +1,26 @@
-<header>
-    <h1>This is the header</h1>
-</header>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo $this->getTitle(); ?></title>
+    <link rel="stylesheet" href="<?php echo $this->addAsset('css/bootstrap.css')?>">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="<?php echo $this->addAsset('js/')?>"></script>
+</head>
+<body>
+    <div>
+        <h1>Blog Site Title</h1>
+    </div>
+    <div>
+        <input id="search" type="text" name="search" /></br>
+        <input id="is-active" type="hidden" name="is-active" value="1" />
+        <button type="submit" class="search-button">Search</button>
+    </div>
+    <div>
+        <input id="is-active" type="hidden" name="is-active" value="1" />
+        <button type="submit" class="logout">Logout</button>
+    </div>
+<hr>
+</body>
+
 
