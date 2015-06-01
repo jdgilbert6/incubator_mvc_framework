@@ -16,7 +16,7 @@ class Blog_Model_Blog extends Core_Model_Model {
         $image = $_POST['image'];
         $url = $this->createSlug($title);
 
-        $db = Bootstrap::getModel('cms/blog');
+        $db = Bootstrap::getModel('base/blog');
         $db->set('author', $author !== null ? $author : '');
         $db->set('date', $date);
         $db->set('title', $title);
@@ -42,7 +42,7 @@ class Blog_Model_Blog extends Core_Model_Model {
 
     public function getSlugId($slug) {
 
-        $model = Bootstrap::getModel('core/model');
+        $model = Bootstrap::getModel('base/model');
         $model->load('url', $slug, 'blog');
         return $model->_data['id'];
     }
