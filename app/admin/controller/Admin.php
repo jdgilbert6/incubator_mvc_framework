@@ -14,11 +14,25 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
         return $view;
     }
 
+    public function updateAction() {
+
+        $view = Bootstrap::getView('admin/edit');
+        return $view;
+    }
+
+    public function deleteAction() {
+
+        $model = Bootstrap::getModel('admin/admin');
+        $model->deleteBlogPost();
+        $this->_getResponse()->redirect('/admin/admin/index');
+    }
+
     public function postAction() {
 
-        $post = Bootstrap::getModel('blog/blog');
-        $post->createBlogPost();
-        $redirect = $this->_getResponse()->redirect('/admin/admin/index');
+        $post = Bootstrap::getModel('admin/admin');
+        $post->getPostArray();
+//        $post->createBlogPost();
+//        $this->_getResponse()->redirect('/blog/blog/view');
 
     }
 
@@ -33,7 +47,7 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
         $admin = Core_Session::getSessionVariable('admin', 'logged-in');
 
         if($admin === false) {
-            $redirect = $this->_getResponse()->redirect('/home');
+            $this->_getResponse()->redirect('/home');
         }
     }
 }
