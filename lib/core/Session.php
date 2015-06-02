@@ -47,7 +47,7 @@ class Core_Session {
     }
 
     public static function setCookie($name, $value, $expire = null) {
-        if(!$expire === null) {
+        if($expire !== null) {
             setcookie($name, $value, $expire);
         } else {
             setcookie($name, $value, time() + (86400 * 7));
