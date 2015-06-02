@@ -35,13 +35,6 @@ class Admin_Model_Admin extends Core_Model_Model {
 
     }
 
-    public function getPostArray() {
-
-        $posts = $this->select('blog');
-        var_dump($posts);
-        return $posts;
-    }
-
     public function createSlug($string) {
 
         $slug = strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $string));
