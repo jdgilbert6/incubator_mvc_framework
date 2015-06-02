@@ -26,6 +26,7 @@ class Base_Model_Access extends Core_Model_Model {
         if(($login->_data['password']) == $password) {
             Core_Session::setSessionVariable('admin', 'logged-in', true);
             Core_Session::setSessionVariable('admin', 'admin-logged-in', $login->_data['email']);
+            Core_Session::setCookie('email', $login->_data['email']);
         } else {
             echo "Incorrect email and/or password.";
             $this->_getRequest()->redirect('/');
