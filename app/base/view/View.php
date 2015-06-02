@@ -11,14 +11,11 @@ class Base_View_View extends Page_View_Page {
 
         $this->setTitle($this->_title);
         $this->setHeader();
-        $this->_setContent($content);
+        $this->_setContent($this->_content);
         $this->setFooter();
         include_once($this->_title);
         include_once($this->_header);
         include_once($this->_content);
         include_once($this->_footer);
-
-
     }
-
 }
