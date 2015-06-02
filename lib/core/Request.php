@@ -7,6 +7,7 @@ class Core_Request extends Core_Object {
     protected $_module;
     protected $_controller;
     protected $_method;
+    protected $_params = array();
 
     private function __construct() {}
 
@@ -19,33 +20,31 @@ class Core_Request extends Core_Object {
         return self::$instance;
     }
 
-    public function getController()
-    {
+    public function getController() {
         return $this->_controller;
     }
 
-    public function setController($controller)
-    {
+    public function setController($controller) {
         $this->_controller = $controller;
     }
 
-    public function getMethod()
-    {
+    public function getMethod() {
         return $this->_method;
     }
 
-    public function setMethod($method)
-    {
+    public function setMethod($method) {
         $this->_method = $method;
     }
 
-    public function getModule()
-    {
+    public function getModule() {
         return $this->_module;
     }
 
-    public function setModule($module)
-    {
+    public function setModule($module) {
         $this->_module = $module;
+    }
+
+    public function getParams() {
+
     }
 }
