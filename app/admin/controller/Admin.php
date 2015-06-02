@@ -30,10 +30,8 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
     public function postAction() {
 
         $post = Bootstrap::getModel('admin/admin');
-        $post->getPostArray();
-//        $post->createBlogPost();
-//        $this->_getResponse()->redirect('/blog/blog/view');
-
+        $post->createBlogPost();
+        $this->_getResponse()->redirect('/blog/blog/view');
     }
 
     public function loginAction() {
