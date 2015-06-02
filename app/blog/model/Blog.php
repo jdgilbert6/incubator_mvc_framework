@@ -7,5 +7,9 @@ class Blog_Model_Blog extends Core_Model_Model {
         $this->getTableName();
     }
 
+    public function getPostArray() {
 
+        $this->_data = $this->select('blog');
+        return $this->_data;
+    }
 }
