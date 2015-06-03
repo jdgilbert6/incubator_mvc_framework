@@ -1,6 +1,6 @@
 <?php
 
-class Admin_View_Edit extends Base_View_View {
+class Admin_View_Update extends Base_View_View {
 
     public function __construct() {
 
