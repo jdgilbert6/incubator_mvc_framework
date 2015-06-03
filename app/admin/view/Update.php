@@ -5,6 +5,8 @@ class Admin_View_Edit extends Base_View_View {
     public function __construct() {
 
         $this->setTitle('Edit Post');
+        $this->getPosts();
+        $this->getParam('id');
         $this->renderPage();
     }
 
