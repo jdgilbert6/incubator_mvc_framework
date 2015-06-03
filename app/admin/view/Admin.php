@@ -5,6 +5,7 @@ class Admin_View_Admin extends Base_View_View {
     public function __construct() {
 
         $this->setTitle('Admin');
+        $this->getPosts();
         $this->renderPage();
     }
 
