@@ -1,19 +1,18 @@
-<div>
-    <form id="update_post_form" method="POST" action="<?php echo Bootstrap::getUrl('/admin/admin/post'); ?>">
+<div class="container">
+    <form id="update_post_form" method="POST" action="<?php echo Bootstrap::getUrl('/admin/admin/edit'); ?>">
         <div class="row">
             <label for="title">Title</label><em>*</em><br/>
             <input id="title" class="input" name="title" type="text" size="100"
-             value="<?php echo $this->_data['title']?>"/><br/>
+             value="<?php echo $this->_posts[$this->_param]['title']?>"/><br/>
         </div>
         <div class="row">
             <label for="image">Image</label><br/>
             <input id="image" class="input" name="image" type="text" size="100"
-             value="<?php echo $this->_data['image']?>"/><br/>
+             value="<?php echo $this->_posts[$this->_param]['image']?>"/><br/>
         </div>
         <div class="row">
             <label for="content">Content</label><em>*</em><br/>
-            <textarea id="content" class="input" name="content" rows="50" cols="100"
-             value="<?php echo $this->_data['content']?>"></textarea><br/>
+            <textarea id="content" class="input" name="content" rows="50" cols="100"><?php echo $this->_posts[$this->_param]['content']?></textarea><br/>
         </div>
         <div>
             <input id="is-active" type="hidden" name="is-active" value="1" />
