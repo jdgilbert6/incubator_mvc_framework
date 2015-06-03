@@ -46,5 +46,17 @@ class Core_Request extends Core_Object {
 
     public function getParams() {
 
+        $query = $_SERVER['QUERY_STRING'];
+        parse_str($query, $queryArray);
+
+        foreach($queryArray as $param) {
+            if(!empty($_GET[$param]) && isset($_GET[$param])) {
+                $this->_params[$param] = trim($_GET[$param]);
+            } elseif(!empty($_POST[$param]) && isset($_POST[$param])) {
+                $this->_params[$param] = trim($_POST[$param]);
+            } elseif(!empty($_SERVER[$param]) && isset($_SERVER[$param])) {
+                $this->_params[$param] = trim($_SERVER[$param]);
+            }
+        }
     }
 }
