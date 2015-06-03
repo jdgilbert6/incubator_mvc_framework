@@ -9,19 +9,17 @@
         <div>
             <h3>Blog Posts</h3>
             <div>
-                <?php foreach($this->_data as $posts):?>
-                    <?php foreach($posts as $post): ?>
+                <?php foreach($this->_posts as $post):?>
                 <h4><?php echo $post['title']?></h4>
                 <p><?php echo $post['content']?></p>
                 <div>
-                    <a href="<?php echo BASE_URL . '/admin/admin/update?id='?>"
-                       class="btn btn-warning" role="'button">Edit Post</a>
+                    <a href="<?php echo BASE_URL . '/admin/admin/update/?id=' . $post['id']?>"
+                       class="btn btn-warning" role="button">Edit Post</a>
                 </div>
                 <div>
-                    <a href="<?php echo BASE_URL . '/admin/admin/delete?id='?>"
-                       class="btn btn-danger" role="'button">Delete Post</a>
+                    <a href="<?php echo BASE_URL . '/admin/admin/delete/?id=' . $post['id']?>"
+                       class="btn btn-danger" role="button">Delete Post</a>
                 </div>
-                <?php endforeach ?>
                 <?php endforeach ?>
             </div>
         </div>
