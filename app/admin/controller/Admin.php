@@ -14,22 +14,29 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
         return $view;
     }
 
+    public function editAction() {
+
+        $model = Bootstrap::getModel('blog/blog');
+        $model->updateBlogPost();
+        $this->_getResponse()->redirect('/admin/admin/index');
+    }
+
     public function updateAction() {
 
-        $view = Bootstrap::getView('admin/edit');
+        $view = Bootstrap::getView('admin/update');
         return $view;
     }
 
     public function deleteAction() {
 
-        $model = Bootstrap::getModel('admin/admin');
+        $model = Bootstrap::getModel('blog/blog');
         $model->deleteBlogPost();
         $this->_getResponse()->redirect('/admin/admin/index');
     }
 
     public function postAction() {
 
-        $post = Bootstrap::getModel('admin/admin');
+        $post = Bootstrap::getModel('blog/blog');
         $post->createBlogPost();
         $this->_getResponse()->redirect('/blog/blog/view');
     }
