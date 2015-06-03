@@ -9,7 +9,11 @@ class Core_Request extends Core_Object {
     protected $_method;
     protected $_params = array();
 
-    private function __construct() {}
+    private function __construct() {
+
+        $this->_params['post'] = $_POST;
+        $this->_params['get'] = $_GET;
+    }
 
     public static function getInstance() {
 
@@ -45,18 +49,18 @@ class Core_Request extends Core_Object {
     }
 
     public function getParams() {
+        return $this->_params;
+    }
 
-        $query = $_SERVER['QUERY_STRING'];
-        parse_str($query, $queryArray);
-
-        foreach($queryArray as $param) {
-            if(!empty($_GET[$param]) && isset($_GET[$param])) {
-                $this->_params[$param] = trim($_GET[$param]);
-            } elseif(!empty($_POST[$param]) && isset($_POST[$param])) {
-                $this->_params[$param] = trim($_POST[$param]);
-            } elseif(!empty($_SERVER[$param]) && isset($_SERVER[$param])) {
-                $this->_params[$param] = trim($_SERVER[$param]);
+    public function getParam($key) {
+        foreach($this->getParams() as $global) {
+            if(array_key_exists($key, $global)) {
+                return $global[$key];
             }
         }
+    }
+
+    public function setParam($global, $key, $value) {
+        $this->_params[$global][$key] = $value;
     }
 }
