@@ -130,7 +130,7 @@ class Core_Model_Model extends Core_Object {
     public function deleteEntry($table, $id) {
         $this->_db = Bootstrap::getConnection();
         $pk = $this->getPrimaryKeyName($table);
-        $sql = "DELETE FROM $table WHERE $pk = :id";
+        $sql = "DELETE FROM $table WHERE $pk = $id";
         $stmt = $this->_db->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
         $stmt->execute();
