@@ -1,24 +1,44 @@
-<div id="wrap">
-    <div class="container">
-        <h1>Admin Panel</h1>
-        <p>Hello, <?php echo Core_Session::getSessionVariable('admin', 'admin-logged-in')?>!</p>
-        <div class="#">
-            <input id="is-active" type="hidden" name="is-active" value="1" />
-            <button type="submit" class="btn btn-primary">Create Post</button>
-        </div>
-        <div>
-            <h3>Blog Posts</h3>
+<div class="container-fluid">
+    <div>
+        <div class="container col-md-2">
             <div>
-                <?php foreach($this->_posts as $post):?>
-                <h4><?php echo $post['title']?></h4>
-                <p><?php echo $post['content']?></p>
-                <div>
-                    <a href="<?php echo BASE_URL . '/admin/admin/update/?id=' . $post['id']?>"
-                       class="btn btn-warning" role="button">Edit Post</a>
+                <h1>Hello, </h1>
+                <h3<?php echo Core_Session::getSessionVariable('admin', 'admin-logged-in')?>!</h3>
+            </div>
+            <div>
+                <h4>Welcome to the admin panel.</h4>
+            </div>
+            <div>
+                <a href="<?php echo BASE_URL . '/admin/admin/create/'?>"
+                  class="btn btn-primary btn-lg btn-block" role="button">Create Post</a>
+            </div>
+        </div>
+        <div class="container col-md-8 col-md-offset-1">
+            <div class="row">
+                <div class="col-md-4">
+                    <h1>Blog Posts</h1>
                 </div>
-                <div>
-                    <a href="<?php echo BASE_URL . '/admin/admin/delete/?id=' . $post['id']?>"
-                       class="btn btn-danger" role="button">Delete Post</a>
+            </div>
+            <div class="row">
+                <?php foreach($this->_posts as $post):?>
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel panel-heading">
+                            <div>
+                                <div class="pull-right">
+                                    <a href="<?php echo BASE_URL . '/admin/admin/delete/?id=' . $post['id']?>"
+                                       class="btn btn-danger" role="button">Delete Post</a>
+                                    <a href="<?php echo BASE_URL . '/admin/admin/update/?id=' . $post['id']?>"
+                                       class="btn btn-warning" role="button">Edit Post</a>
+                                </div>
+                                <h3><?php echo $post['title']?></h3>
+                                <h6>Posted by <?php echo $post['author']?> on <?php echo $post['date']?></h6>
+                            </div>
+                        </div>
+                        <div class="panel panel-body">
+                            <p><?php echo $post['content']?></p>
+                        </div>
+                    </div>
                 </div>
                 <?php endforeach ?>
             </div>

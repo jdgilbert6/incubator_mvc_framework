@@ -12,14 +12,14 @@
             <h1>Blog Post Title</h1>
 
             <!-- Author -->
-            <p class="lead">
-                by <a href="#">Start Bootstrap</a>
-            </p>
+<!--            <p class="lead">-->
+<!--                by <a href="#">Start Bootstrap</a>-->
+<!--            </p>-->
 
             <hr>
 
             <!-- Date/Time -->
-            <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
+            <p>Posted by <?php echo $post['author']?> on <?php echo $post['date']?></p>
 
             <hr>
 
@@ -100,13 +100,11 @@
 
             <!-- Blog Search Well -->
             <div class="well">
-                <h4>Blog Search</h4>
+                <h4>Looking for something?</h4>
                 <div class="input-group">
                     <input type="text" class="form-control">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
+                            <button class="btn btn-default" type="button">Search</button>
                         </span>
                 </div>
                 <!-- /.input-group -->
@@ -114,7 +112,7 @@
 
             <!-- Blog Categories Well -->
             <div class="well">
-                <h4>Blog Categories</h4>
+                <h4>Recent Posts</h4>
                 <div class="row">
                     <div class="col-lg-6">
                         <ul class="list-unstyled">
