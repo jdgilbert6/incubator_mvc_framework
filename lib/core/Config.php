@@ -65,12 +65,12 @@ class Core_Config {
 
     /**
      * XPath search through xml nodes in config.xml files.
-     * Return array of routers inside <routes> nodes.
+     * Return array of router inside <routers> nodes.
      */
     public function getRouters() {
 
         $routersArray = array();
-        $xpath = '//config/routes';
+        $xpath = '//config/routers';
 
         foreach($this->_queryXml($xpath) as $routers) {
             foreach($routers->children() as $childRoute) {
