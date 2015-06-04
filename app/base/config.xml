@@ -1,8 +1,16 @@
 <?xml version="1.0"?>
 <config>
     <controller>
-        <admin>
+        <blog>
             <uri>home</uri>
-        </admin>
+        </blog>
     </controller>
+    <table>
+        <setup>1</setup>
+    </table>
+    <routers>
+        <base>
+            <module>Base_Controller_Router_Base</module>
+        </base>
+    </routers>
 </config>
