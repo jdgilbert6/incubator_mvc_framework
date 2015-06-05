@@ -134,14 +134,15 @@ class Core_Config {
 
     public function changeSetupValue() {
 
-        $file = BASE_PATH . '/lib/core/config.xml';
-        $doc = new DOMDocument();
-        $doc->load($file);
-        $setup = $doc->getElementsByTagName('setup');
-        $setup->item(0)->nodeValue = 1;
-        $doc->save($file);
+        $file = APP_PATH . '/base/config.xml';
+        $xml = simplexml_load_file($file);
+        foreach($xml->xpath('//table/setup') as $setup) {
+            $dom = dom_import_simplexml($setup);
+            $dom->nodeValue = '1';
+        }
+//        file_put_contents($file, $xml->asXML());
+        $test = $xml->asXML($file);
 
-//        var_dump($value);
     }
 }
 
