@@ -25,7 +25,6 @@ class Base_View_View extends Page_View_Page {
     public function getPosts() {
 
         $this->_posts = Bootstrap::getModel('blog/blog')->getPostsArray();
-//        var_dump($this->_posts);
         return $this->_posts;
     }
 
