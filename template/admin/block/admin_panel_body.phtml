@@ -3,13 +3,13 @@
         <div class="container col-md-2">
             <div>
                 <h1>Hello, </h1>
-                <h3<?php echo Core_Session::getSessionVariable('admin', 'admin-logged-in')?>!</h3>
+                <h3><?php echo Core_Session::getSessionVariable('admin', 'admin-logged-in')?>!</h3>
             </div>
             <div>
                 <h4>Welcome to the admin panel.</h4>
             </div>
             <div>
-                <a href="<?php echo BASE_URL . '/admin/admin/create/'?>"
+                <a href="<?php echo Bootstrap::getUrl('/admin/admin/create/')?>"
                   class="btn btn-primary btn-lg btn-block" role="button">Create Post</a>
             </div>
         </div>
@@ -26,9 +26,9 @@
                         <div class="panel panel-heading">
                             <div>
                                 <div class="pull-right">
-                                    <a href="<?php echo BASE_URL . '/admin/admin/delete/?id=' . $post['id']?>"
+                                    <a href="<?php echo Bootstrap::getUrl('/admin/admin/delete/?id=') . $post['id']?>"
                                        class="btn btn-danger" role="button">Delete Post</a>
-                                    <a href="<?php echo BASE_URL . '/admin/admin/update/?id=' . $post['id']?>"
+                                    <a href="<?php echo Bootstrap::getUrl('/admin/admin/update/?id=' . $post['id'])?>"
                                        class="btn btn-warning" role="button">Edit Post</a>
                                 </div>
                                 <h3><?php echo $post['title']?></h3>
