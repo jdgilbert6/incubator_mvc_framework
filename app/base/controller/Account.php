@@ -11,8 +11,8 @@ class Base_Controller_Account extends Core_Controller_Abstract {
 
     public function registerAction() {
 
-        $page = Bootstrap::getView('page/page');
-        $page->setTemplate('page/admin_register');
+        $page = Bootstrap::getView('base/welcome');
+        $page->setTemplate('admin/form/admin_register');
         $page->renderTemplate();
     }
 
@@ -24,6 +24,7 @@ class Base_Controller_Account extends Core_Controller_Abstract {
     }
 
     public function loginAction() {
+
         $login = Bootstrap::getModel('base/access');
         $login->adminLogin();
         $redirect = $this->_getResponse()->redirect(BASE_URL . '/admin/admin/index');
@@ -34,9 +35,5 @@ class Base_Controller_Account extends Core_Controller_Abstract {
 
         $model = Bootstrap::getModel('base/access');
         $model->logout();
-    }
-
-    public function validate() {
-
     }
 }
