@@ -1,16 +1,56 @@
-<form id="registration" method="POST" action="cms/account/register">
+<!--<form id="registration" method="POST" action="base/account/register">-->
+<!--    <div class="row">-->
+<!--        <label for="name">Name</label><em>*</em>-->
+<!--        <input id="name" type="text" name="name" class="required"/></br>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <label for="email">Email</label><em>*</em>-->
+<!--        <input id="email" type="email" name="email" class="required"/></br>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <label for="password">Password</label><em>*</em>-->
+<!--        <input id="password" type="password" name="password" class="required"/></br>-->
+<!--    </div>-->
+<!--    <input id="is-active" type="hidden" name="is-active" value="1" />-->
+<!--    <button type="button" class="register-button">Register</button>-->
+<!--</form>-->
+
+<div class="container">
     <div class="row">
-        <label for="name">Name</label><em>*</em>
-        <input id="name" type="text" name="name" class="required"/></br>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"> <strong class="">Register</strong>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="inputName3" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="inputName3" placeholder="Name" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" required="">
+                            </div>
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-9 col-sm-offset-2">
+                                <button type="submit" class="btn btn-success btn-block">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">Already registered? <a href="<?php echo Bootstrap::getUrl('/admin/admin/login')?>" class="">Login here</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <label for="email">Email</label><em>*</em>
-        <input id="email" type="email" name="email" class="required"/></br>
-    </div>
-    <div class="row">
-        <label for="password">Password</label><em>*</em>
-        <input id="password" type="password" name="password" class="required"/></br>
-    </div>
-    <input id="is-active" type="hidden" name="is-active" value="1" />
-    <button type="button" class="register-button">Register</button>
-</form>
+</div>
