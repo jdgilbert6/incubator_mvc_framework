@@ -29,7 +29,7 @@ class Base_Model_Access extends Core_Model_Model {
             Core_Session::setCookie('email', $login->_data['email']);
         } else {
             echo "Incorrect email and/or password.";
-            $this->_getRequest()->redirect('/');
+            Bootstrap::getRequest()->redirect('/');
         }
 
     }
@@ -65,6 +65,6 @@ class Base_Model_Access extends Core_Model_Model {
     public function logout() {
 
         Core_Session::setSessionVariable('user', 'logged-in', false);;
-        $request = $this->_getRequest()->redirect('/');
+        Bootstrap::getRequest()->redirect('/');
     }
 }
