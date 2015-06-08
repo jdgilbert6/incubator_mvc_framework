@@ -36,9 +36,11 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
 
     public function postAction() {
 
+        $validator = Bootstrap::getModel('base/validate');
+        $validator->validateNotEmpty($email);
         $post = Bootstrap::getModel('blog/blog');
         $post->createBlogPost();
-        $this->_getResponse()->redirect('/blog/blog/view');
+        $this->_getResponse()->redirect('/blog/page/view');
     }
 
     public function loginAction() {
