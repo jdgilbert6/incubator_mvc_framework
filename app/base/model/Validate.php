@@ -1,21 +1,57 @@
 <?php
 
-class Base_Model_Validate {
+class Base_Model_Validate extends Core_Model_Model {
 
-    protected $_error;
-    public $fields = array();
+    protected $_errors = array();
 
     public function __construct() {}
 
-    public function validateNotEmpty($fields) {
+    public function validateNotEmpty($field) {
 
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
-            foreach($this->fields as $field) {
-                if(!isset($_POST[$field]) || empty($_POST[$field])) {
-                    $this->_error = 'Please complete the ' . $field . ' field.';
-                    return $this->_error;
-                }
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(!isset($_POST[$field]) || empty($_POST[$field])) {
+                return false;
+            } else {
+                return true;
             }
         }
+    }
+
+    public function validateMaxLength($field, $length) {
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(strlen($_POST[$field]) > $length) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    public function validateEmail($email) {
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(filter_var($_POST[$email], FILTER_VALIDATE_EMAIL)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function validatePassword($password) {
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(strlen($_POST[$password]) < 5) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    public function getErrors() {
+
+        return $this->_errors;
     }
 }
