@@ -1,15 +1,121 @@
-<div>
-    <h3>Recent Posts</h3>
-    <div>
-        <h6>Blog Post Title #1</h6>
-        <p>Blog Content</p>
+<!-- Page Content -->
+<div class="container-fluid">
+
+    <div class="container">
+
+        <div class="col-md-4 pull-right">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Looking for something?</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Search</button>
+                        </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+
+            <!-- Blog Categories Well -->
+
+
+            <!-- Side Widget Well -->
+
+
+        </div>
+
+        <!-- Blog Post Content Column -->
+        <div class="col-md-7">
+            <!-- Blog Sidebar Widgets Column -->
+
+
+            <!-- Blog Post -->
+            <div class="row">
+                <?php foreach($this->_posts as $post):?>
+                    <div class="row">
+                        <div class="panel panel-default">
+                            <div class="panel panel-heading">
+                                <div>
+                                    <div class="pull-right">
+                                        <a href="<?php echo Bootstrap::getUrl('/blog/page/view/id/' . $post['id'])?>"
+                                           class="btn btn-primary" role="button">Read More</a>
+                                    </div>
+                                    <h3><?php echo $post['title']?></h3>
+                                    <h6>Posted by <?php echo $post['author']?> on <?php echo $post['date']?></h6>
+                                </div>
+                            </div>
+                            <div class="panel panel-body">
+                                <p><?php echo $post['content']?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach ?>
+            </div>
+            <!-- Title -->
+<!--            <h1>--><?php //echo $post['title']?><!--</h1>-->
+
+            <!-- Author -->
+            <!--            <p class="lead">-->
+            <!--                by <a href="#">Start Bootstrap</a>-->
+            <!--            </p>-->
+
+<!--            <hr>-->
+
+            <!-- Date/Time -->
+<!--            <p>Posted by --><?php //echo $post['author']?><!-- on --><?php //echo $post['date']?><!--</p>-->
+
+<!--            <hr>-->
+
+            <!-- Preview Image -->
+<!--            <img class="img-responsive" src="http://placehold.it/900x300" alt="">-->
+
+<!--            <hr>-->
+
+            <!-- Post Content -->
+<!--            <p>--><?php //$post['content']?><!--</p>-->
+
+<!--            <hr>-->
+
+            <!-- Blog Comments -->
+
+            <!-- Comments Form -->
+<!--            <div class="well">-->
+<!--                <h4>Leave a Comment:</h4>-->
+<!--                <form role="form">-->
+<!--                    <div class="form-group">-->
+<!--                        <textarea class="form-control" rows="3"></textarea>-->
+<!--                    </div>-->
+<!--                    <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!---->
+<!--            <hr>-->
+<!---->
+            <!-- Posted Comments -->
+<!---->
+            <!-- Comment -->
+<!--            <div class="media">-->
+<!--                <div class="media-body">-->
+<!--                    <h4 class="media-heading">Start Bootstrap-->
+<!--                        <small>August 25, 2014 at 9:30 PM</small>-->
+<!--                    </h4>-->
+<!--                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+            <!-- Comment -->
+<!--            <div class="media">-->
+<!--                <div class="media-body">-->
+<!--                    <h4 class="media-heading">Start Bootstrap-->
+<!--                        <small>August 25, 2014 at 9:30 PM</small>-->
+<!--                    </h4>-->
+<!--                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+<!--                </div>-->
+<!--            </div>-->
+
+        </div>
+
+
+
     </div>
-    <div>
-        <h6>Blog Post Title #2</h6>
-        <p>Blog Content</p>
-    </div>
-    <div>
-        <h6>Blog Post Title #3</h6>
-        <p>Blog Content</p>
-    </div>
-</div>
