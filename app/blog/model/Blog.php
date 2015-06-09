@@ -36,6 +36,13 @@ class Blog_Model_Blog extends Core_Model_Model {
         $this->save();
     }
 
+    public function readBlogPost() {
+
+        $postUri = $_SERVER['QUERY_STRING'];
+        $parsed = parse_str($postUri);
+
+    }
+
     public function updateBlogPost() {
 
         $title = $_POST['title'];
