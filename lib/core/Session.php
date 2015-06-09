@@ -20,19 +20,19 @@ class Core_Session {
     }
 
     public static function destroySession() {
+        session_unset();
         session_destroy();
     }
 
-    public static function getSessionVariable($session, $variable) {
-        session_id($session);
+    public static function getSessionVariable($variable) {
         session_start();
         if($_SESSION[$variable]) {
             return $_SESSION[$variable];
         }
+        return false;
     }
 
-    public static function setSessionVariable($session, $variable, $value) {
-        session_id($session);
+    public static function setSessionVariable($variable, $value) {
         session_start();
         $_SESSION[$variable] = $value;
         session_write_close();
