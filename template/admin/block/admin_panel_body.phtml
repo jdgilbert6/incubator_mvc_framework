@@ -3,7 +3,7 @@
         <div class="container col-md-2">
             <div>
                 <h1>Hello, </h1>
-                <h3><?php echo Core_Session::getSessionVariable('admin', 'admin-logged-in')?>!</h3>
+                <h3><?php echo Core_Session::getSessionVariable('admin', 'logged-in')?>!</h3>
             </div>
             <div>
                 <h4>Welcome to the admin panel.</h4>
@@ -30,6 +30,8 @@
                                        class="btn btn-danger" role="button">Delete Post</a>
                                     <a href="<?php echo Bootstrap::getUrl('/admin/admin/update/?id=' . $post['id'])?>"
                                        class="btn btn-warning" role="button">Edit Post</a>
+                                    <a href="<?php echo Bootstrap::getUrl('/blog/page/view/id/' . $post['id'])?>"
+                                       class="btn btn-success" role="button">Read Post</a>
                                 </div>
                                 <h3><?php echo $post['title']?></h3>
                                 <h6>Posted by <?php echo $post['author']?> on <?php echo $post['date']?></h6>
