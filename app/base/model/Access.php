@@ -24,8 +24,8 @@ class Base_Model_Access extends Core_Model_Model {
         
         $login = Bootstrap::getModel('admin/admin')->load('email', $email);
         if(($login->_data['password']) == $password) {
-            Core_Session::setSessionVariable('admin', 'logged-in', true);
-            Core_Session::setSessionVariable('admin', 'admin-logged-in', $login->_data['email']);
+            Core_Session::setSessionVariable('admin', 'logged-in');
+            Core_Session::setSessionVariable('email', $login->_data['email']);
             Core_Session::setCookie('email', $login->_data['email']);
         } else {
             echo "Incorrect email and/or password.";
@@ -41,7 +41,7 @@ class Base_Model_Access extends Core_Model_Model {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $db = Bootstrap::getModel('base/users');
+        $db = Bootstrap::getModel('users/users');
         $db->set('firstname', $firstname);
         $db->set('lastname', $lastname);
         $db->set('email', $email);
@@ -54,17 +54,20 @@ class Base_Model_Access extends Core_Model_Model {
         $email = $_POST['email'];
         $password = sha1($_POST['password']);
 
-        $login = Bootstrap::getModel('base/users')->load('email', $email);
-        $pass = Bootstrap::getModel('base/users')->load('password', sha1($password));
-
-        if($login && $pass) {
-            Core_Session::setSessionVariable('user', 'logged-in', true);
-            Core_Session::setSessionVariable('user', 'current-user-id', $login->getId());        }
+        $login = Bootstrap::getModel('users/users')->load('email', $email);
+        if(($login->_data['password']) == $password) {
+            Core_Session::setSessionVariable('user', 'logged-in');
+            Core_Session::setSessionVariable('email', $login->_data['email']);
+            Core_Session::setCookie('email', $login->_data['email']);
+        } else {
+            echo "Incorrect email and/or password.";
+            Bootstrap::getRequest()->redirect('/');
+        }
     }
 
     public function logout() {
 
-        Core_Session::setSessionVariable('user', 'logged-in', false);;
+        Core_Session::endSession();
         Bootstrap::getRequest()->redirect('/');
     }
 }
