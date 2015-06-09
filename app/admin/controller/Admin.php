@@ -36,11 +36,16 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
 
     public function postAction() {
 
+        Core_Session::endSession();
         $validator = Bootstrap::getModel('base/validate');
-        $validator->validateNotEmpty($email);
-        $post = Bootstrap::getModel('blog/blog');
-        $post->createBlogPost();
-        $this->_getResponse()->redirect('/blog/page/view');
+        if(!$validator->validateAdminCrudForm()) {
+            Core_Session::setSessionVariable('error', $validator->getErrors());
+            $this->_getResponse()->redirect();
+        } else {
+            $post = Bootstrap::getModel('blog/blog');
+            $post->createBlogPost();
+            $this->_getResponse()->redirect('/blog/page/view');
+        }
     }
 
     public function loginAction() {
