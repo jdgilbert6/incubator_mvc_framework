@@ -23,7 +23,7 @@ final class Bootstrap {
             ->set('uri', $_SERVER['REQUEST_URI'])
             ->set('is_dispatched', false);
         self::matchRoute();
-        self::getModel('core/model');
+        self::getModel('core/model'); /** TODO take this out! */
     }
 
     public static function matchRoute() {
