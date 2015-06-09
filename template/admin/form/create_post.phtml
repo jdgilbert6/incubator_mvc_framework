@@ -1,21 +1,23 @@
+<?php $errors = Core_Session::getSessionVariable('admin', 'msg') ?: array(); ?>
+
 <div class="container">
-<form id="create_post_form" method="POST" action="<?php echo Bootstrap::getUrl('/admin/admin/post'); ?>">
-    <div class="col-md-10">
-        <label for="title">Title</label><em>*</em><br/>
-        <span id="titleError" class="col-md-5 hidden"></span>
-        <input id="title" class="input" name="title" type="text" size="100" /><br/>
-    </div>
-    <div class="col-md-10">
-        <label for="image">Image</label><br/>
-        <input id="image" class="input" name="image" type="text" size="100" /><br/>
-    </div>
-    <div class="col-md-10">
-        <label for="content">Content</label><em>*</em><br/>
-        <span id="contentError" class="col-md-5 hidden"></span>
-        <textarea id="content" class="input" name="content" rows="50" cols="100"></textarea><br/>
-    </div>
-    <div class="col-md-9 col-md-offset-0">
-        <button class="btn btn-primary btn-lg btn-block">Post</button>
-    </div>
-</form>
+    <form id="create_post_form" method="POST" action="<?php echo Bootstrap::getUrl('/admin/admin/post'); ?>">
+        <div class="col-md-10">
+            <label for="title">Title</label><em>*</em><br/>
+            <span style="color: red" id="titleError" class="col-md-5"><?php if(array_key_exists('title', $errors)){ echo $errors['title']; }?></span>
+            <input id="title" class="input" name="title" type="text" size="100" /><br/>
+        </div>
+        <div class="col-md-10">
+            <label for="image">Image</label><br/>
+            <input id="image" class="input" name="image" type="text" size="100" /><br/>
+        </div>
+        <div class="col-md-10">
+            <label for="content">Content</label><em>*</em><br/>
+            <span style="color: red" id="contentError" class="col-md-offset-1"><?php if(array_key_exists('content', $errors)){ echo $errors['content']; }?></span>
+            <textarea id="content" class="input" name="content" rows="50" cols="100"></textarea><br/>
+        </div>
+        <div class="col-md-9 col-md-offset-0">
+            <button class="btn btn-primary btn-lg btn-block">Post</button>
+        </div>
+    </form>
 </div>
