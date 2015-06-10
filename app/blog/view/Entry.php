@@ -6,6 +6,7 @@ class Blog_View_Entry extends Base_View_View {
 
         $this->setTitle('View Post');
         $this->getPosts();
+        $this->getPostId();
         $this->renderPage();
     }
 
