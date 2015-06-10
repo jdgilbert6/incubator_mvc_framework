@@ -1,3 +1,4 @@
+<?php $errors = Core_Session::getSessionVariable('error') ?: array(); ?>
 <!-- Page Content -->
 <div class="container">
 
@@ -38,6 +39,7 @@
             <!-- Comments Form -->
             <div class="well">
                 <h4>Leave a Comment:</h4>
+                <span style="color: red" id="titleError" class="col-md-5"><?php if(array_key_exists('comment', $errors)){ echo $errors['title']; }?></span>
                 <form role="form">
                     <div class="form-group">
                         <textarea class="form-control" rows="3"></textarea>
