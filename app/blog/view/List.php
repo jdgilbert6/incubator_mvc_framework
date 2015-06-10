@@ -1,6 +1,6 @@
 <?php
 
-class Blog_View_Recent extends Base_View_View {
+class Blog_View_List extends Base_View_View {
 
     public function __construct() {
 
@@ -11,6 +11,6 @@ class Blog_View_Recent extends Base_View_View {
 
     protected function _setContent() {
 
-        $this->_content = TMP_PATH . DS . 'blog/block/recent_posts.phtml';
+        $this->_content = TMP_PATH . DS . 'blog/block/list_posts.phtml';
     }
 }
