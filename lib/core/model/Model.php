@@ -83,9 +83,11 @@ class Core_Model_Model extends Core_Object {
         } else {
             $this->_table = $table;
         }
+        return $this->_table;
     }
 
-    public function select($table, $id=null, $fieldname=null) {
+    public function select($table, $id=null, $fieldname=null, $options=null) {
+//        $columns = !empty($columns) ? implode(',', $columns) : '*';
         $this->_db = Bootstrap::getConnection();
         if($id == null && $fieldname == null) {
             $sql = "SELECT * FROM $table";
@@ -94,6 +96,9 @@ class Core_Model_Model extends Core_Object {
             $sql = "SELECT * FROM $table WHERE $pk = '$id'";
         } else {
             $sql = "SELECT * FROM $table WHERE $id = '$fieldname'";
+        }
+        if(!is_null($options)) {
+            $sql .= ' ' . $options;
         }
         $stmt = $this->_db->prepare($sql);
         //$stmt->bindParam(':id', $id);
