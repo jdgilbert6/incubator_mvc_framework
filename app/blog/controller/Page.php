@@ -8,9 +8,9 @@ class Blog_Controller_Page extends Core_Controller_Abstract {
         return $view;
     }
 
-    public function recentAction() {
+    public function listAction() {
 
-        $view = Bootstrap::getView('blog/recent');
+        $view = Bootstrap::getView('blog/list');
         return $view;
     }
 
