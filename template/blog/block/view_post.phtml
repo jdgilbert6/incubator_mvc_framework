@@ -1,4 +1,6 @@
-<?php $errors = Core_Session::getSessionVariable('error') ?: array(); ?>
+<?php $array = Core_Session::getSessionVariable('postsArray') ?: array(); ?>
+<?php $id = $this->_id ?>
+<?php $post = array_key_exists($id, $array) ? $array[$id] : false ?>
 <!-- Page Content -->
 <div class="container">
 
@@ -30,7 +32,7 @@
             <hr>
 
             <!-- Post Content -->
-            <p><?php $post['content']?></p>
+            <p><?php echo $post['content']?></p>
 
             <hr>
 
