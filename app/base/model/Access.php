@@ -2,6 +2,11 @@
 
 class Base_Model_Access extends Core_Model_Model {
 
+    protected $_firstname;
+    protected $_lastname;
+    protected $_email;
+    protected $_password;
+
     public function __construct() {}
 
     public function adminRegister() {
@@ -19,19 +24,15 @@ class Base_Model_Access extends Core_Model_Model {
 
     public function adminLogin() {
 
-        $email = $_POST['email'];
-        $password = sha1($_POST['password']);
-        
-        $login = Bootstrap::getModel('admin/admin')->load('email', $email);
-        if(($login->_data['password']) == $password) {
+        $login = Bootstrap::getModel('admin/admin')->load('email', $this->_email);
+        if (($login->_data['password']) == $this->_password) {
             Core_Session::setSessionVariable('admin', 'logged-in');
             Core_Session::setSessionVariable('email', $login->_data['email']);
             Core_Session::setCookie('email', $login->_data['email']);
+            return true;
         } else {
-            echo "Incorrect email and/or password.";
-            Bootstrap::getRequest()->redirect('/');
+            return false;
         }
-
     }
 
     public function userRegister() {
@@ -51,23 +52,38 @@ class Base_Model_Access extends Core_Model_Model {
 
     public function userLogin() {
 
-        $email = $_POST['email'];
-        $password = sha1($_POST['password']);
-
-        $login = Bootstrap::getModel('users/users')->load('email', $email);
-        if(($login->_data['password']) == $password) {
+        $login = Bootstrap::getModel('users/users')->load('email', $this->_email);
+        if(($login->_data['password']) == $this->_password) {
             Core_Session::setSessionVariable('user', 'logged-in');
             Core_Session::setSessionVariable('email', $login->_data['email']);
             Core_Session::setCookie('email', $login->_data['email']);
+            return true;
         } else {
-            echo "Incorrect email and/or password.";
-            Bootstrap::getRequest()->redirect('/');
+            return false;
+        }
+    }
+
+    public function login() {
+
+        $this->_email = $_POST['email'];
+        $this->_password = sha1($_POST['password']);
+
+        if($this->adminLogin() && !$this->userLogin()) {
+            Bootstrap::getResponse()->redirect('/admin/admin/index');
+        }
+
+        if(!$this->adminLogin() && $this->userLogin()) {
+            Bootstrap::getResponse()->redirect('/blog/page/list');
+        }
+
+        if(!$this->adminLogin() && !$this->userLogin()) {
+            Bootstrap::getResponse()->redirect('/');
         }
     }
 
     public function logout() {
 
         Core_Session::endSession();
-        Bootstrap::getRequest()->redirect('/');
+        Bootstrap::getResponse()->redirect('/');
     }
 }
