@@ -4,6 +4,7 @@ class Base_View_View extends Page_View_Page {
 
     protected $_posts = array();
     protected $_param;
+    protected $_id;
 
     protected function _setContent($content) {
 
@@ -13,7 +14,7 @@ class Base_View_View extends Page_View_Page {
     public function renderPage() {
 
         $this->setTitle($this->_title);
-        $this->setHeader();
+        $this->setHeader($this->_header);
         $this->_setContent($this->_content);
         $this->setFooter();
         include_once($this->_title);
@@ -32,5 +33,11 @@ class Base_View_View extends Page_View_Page {
 
         $this->_param = Bootstrap::getRequest()->getParam('id');
         return $this->_param;
+    }
+
+    public function getPostId() {
+
+        $this->_id = Bootstrap::getModel('blog/blog')->getPostIdFromUrl();
+        return $this->_id;
     }
 }
