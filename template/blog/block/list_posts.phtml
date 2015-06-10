@@ -33,6 +33,7 @@
             <!-- Blog Post -->
             <div class="row">
                 <?php foreach($this->_posts as $post):?>
+                    <?php Core_Session::setSessionVariable('postsArray', $this->_posts)?>
                     <div class="row">
                         <div class="panel panel-default">
                             <div class="panel panel-heading">
