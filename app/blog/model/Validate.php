@@ -1,7 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joshgilbert
- * Date: 6/9/15
- * Time: 8:51 PM
- */
+
+class Blog_Model_Validate extends Base_Model_Validate {
+
+    public function validateComment() {
+
+        if(!$this->validateNotEmpty('comment')) {
+            $this->_errors['comment'] = 'Please include a comment.';
+        }
+
+        if(!array_key_exists('comment', $this->_errors) && !$this->validateMaxLength('comment', 255)) {
+            $this->_errors['comment'] = 'Comment is too long.';
+        }
+
+        return empty($this->_errors);
+    }
+}
