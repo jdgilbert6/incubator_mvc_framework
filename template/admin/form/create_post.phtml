@@ -1,4 +1,4 @@
-<?php $errors = Core_Session::getSessionVariable('admin', 'msg') ?: array(); ?>
+<?php $errors = Core_Session::getSessionVariable('error') ?: array(); ?>
 
 <div class="container">
     <form id="create_post_form" method="POST" action="<?php echo Bootstrap::getUrl('/admin/admin/post'); ?>">
