@@ -2,32 +2,26 @@
 
 class Base_Controller_Account extends Core_Controller_Abstract {
 
-    public function indexAction() {
-
-        $page = Bootstrap::getView('page/page');
-        $page->setTemplate('page/default');
-        $page->renderTemplate();
-    }
-
-    public function registerAction() {
-
-        $page = Bootstrap::getView('base/welcome');
-        $page->setTemplate('admin/form/admin_register');
-        $page->renderTemplate();
-    }
+//    public function registerAction() {
+//
+//        $view = Bootstrap::getView('base/welcome');
+//        return $view;
+//    }
 
     public function adminAction() {
 
-        $page = Bootstrap::getView('page/page');
-        $page->setTemplate('page/blog_admin');
-        $page->renderTemplate();
+//        $page = Bootstrap::getView('page/page');
+//        $page->setTemplate('page/blog_admin');
+//        $page->renderTemplate();
     }
 
     public function loginAction() {
 
-        $login = Bootstrap::getModel('base/access');
-        $login->adminLogin();
-        $redirect = $this->_getResponse()->redirect(BASE_URL . '/admin/admin/index');
+        $view = Bootstrap::getView('base/login');
+        $model = Bootstrap::getModel('base/access');
+        $model->login();
+        return $view;
+
 
     }
 
