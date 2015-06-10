@@ -21,6 +21,12 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
         $this->_getResponse()->redirect('/admin/admin/index');
     }
 
+    public function readAction() {
+
+        $model = Bootstrap::getModel('blog/blog');
+        $model->readBlogPost();
+    }
+
     public function updateAction() {
 
         $view = Bootstrap::getView('admin/update');
@@ -46,12 +52,6 @@ class Admin_Controller_Admin extends Core_Controller_Abstract {
             $post->createBlogPost();
             $this->_getResponse()->redirect('/blog/page/view');
         }
-    }
-
-    public function loginAction() {
-
-        $view = Bootstrap::getView('admin/login');
-        return $view;
     }
 
     public function isAdminLoggedIn() {
