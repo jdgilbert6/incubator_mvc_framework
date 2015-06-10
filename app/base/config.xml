@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <config>
     <controller>
-        <blog>
+        <base>
             <uri>home</uri>
-        </blog>
+        </base>
     </controller>
     <table>
         <setup>1</setup>
