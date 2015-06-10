@@ -35,7 +35,7 @@ class Base_Model_Pagination extends Core_Model_Model {
 
         $table = $this->_parent->getTableName();
         $sql = parent::select($table, null, null, null, null);
-        
+
     }
 
 
