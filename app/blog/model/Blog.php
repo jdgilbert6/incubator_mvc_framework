@@ -2,9 +2,12 @@
 
 class Blog_Model_Blog extends Core_Model_Model {
 
+    protected $_paginator;
+
     public function __construct() {
 
         $this->getTableName();
+        $this->_paginator = Bootstrap::getModel('base/pagination');
     }
 
     public function getPostsArray() {
@@ -38,8 +41,6 @@ class Blog_Model_Blog extends Core_Model_Model {
 
     public function readBlogPost() {
 
-        $postUri = $_SERVER['QUERY_STRING'];
-        $parsed = parse_str($postUri);
 
     }
 
@@ -71,5 +72,13 @@ class Blog_Model_Blog extends Core_Model_Model {
         $model = Bootstrap::getModel('core/model');
         $model->load('url', $slug, 'blog');
         return $model->_data['id'];
+    }
+
+    public function getPostIdFromUrl() {
+
+        $postUri = $_SERVER['REQUEST_URI'];
+        $parsed = explode('/', $postUri);
+        $postId = array_pop($parsed);
+        return $postId;
     }
 }
