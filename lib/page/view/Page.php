@@ -118,8 +118,12 @@ class Page_View_Page extends Page_View_Abstract {
         $this->_title = $title;
     }
 
-    public function setHeader() {
-        $this->_header = TMP_PATH . DS . 'header.phtml';
+    public function setHeader($header = null) {
+        if(!$header == null) {
+            $this->_header = $header;
+        } else {
+            $this->_header = TMP_PATH . DS . 'header.phtml';
+        }
     }
 
     public function getContent() {
