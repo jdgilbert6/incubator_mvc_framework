@@ -14,5 +14,11 @@ class Blog_Controller_Page extends Core_Controller_Abstract {
         return $view;
     }
 
+    public function testAction() {
+
+        $model = Bootstrap::getModel('base/pagination');
+        $model->getPage();
+    }
+
 
 }
