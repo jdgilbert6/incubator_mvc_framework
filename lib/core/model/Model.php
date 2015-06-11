@@ -23,7 +23,7 @@ class Core_Model_Model extends Core_Object {
             $this->_table = $table;
         }
 
-        $result = $this->select($this->_table, $column, $value);
+        $result = $this->select($this->_table, array(), $column, $value);
         if(empty($result[0])) {
             return false;
         } else {
@@ -86,16 +86,16 @@ class Core_Model_Model extends Core_Object {
         return $this->_table;
     }
 
-    public function select($table, $id=null, $fieldname=null, $options=null) {
-//        $columns = !empty($columns) ? implode(',', $columns) : '*';
+    public function select($table, $columns = array(), $id=null, $fieldname=null, $options=null) {
+        $columns = !empty($columns) ? implode(',', $columns) : '*';
         $this->_db = Bootstrap::getConnection();
         if($id == null && $fieldname == null) {
-            $sql = "SELECT * FROM $table";
+            $sql = "SELECT $columns FROM $table";
         } elseif($fieldname == null) {
             $pk = $this->getPrimaryKeyName($table);
-            $sql = "SELECT * FROM $table WHERE $pk = '$id'";
+            $sql = "SELECT $columns FROM $table WHERE $pk = '$id'";
         } else {
-            $sql = "SELECT * FROM $table WHERE $id = '$fieldname'";
+            $sql = "SELECT $columns FROM $table WHERE $id = '$fieldname'";
         }
         if(!is_null($options)) {
             $sql .= ' ' . $options;
