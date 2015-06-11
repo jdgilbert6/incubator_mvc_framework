@@ -7,7 +7,7 @@ class Blog_Model_Blog extends Core_Model_Model {
     public function __construct() {
 
         $this->getTableName();
-        $this->_paginator = Bootstrap::getModel('base/pagination');
+        $this->_paginator = Bootstrap::getModel('base/pagination')->setParent($this);
     }
 
     public function getPostsArray() {
