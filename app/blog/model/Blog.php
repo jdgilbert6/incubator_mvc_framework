@@ -22,7 +22,7 @@ class Blog_Model_Blog extends Core_Model_Model {
 
     public function createBlogPost() {
 
-        $author = Core_Session::getSessionVariable('admin', 'admin-logged-in');
+        $author = Core_Session::getSessionVariable('admin');
         $date = date('m-d-Y');
         $title = $_POST['title'];
         $content = $_POST['content'];
@@ -80,5 +80,10 @@ class Blog_Model_Blog extends Core_Model_Model {
         $parsed = explode('/', $postUri);
         $postId = array_pop($parsed);
         return $postId;
+    }
+
+    public function getPaginator() {
+
+        return $this->_paginator;
     }
 }
