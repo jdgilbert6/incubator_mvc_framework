@@ -9,11 +9,13 @@ class Base_Model_Pagination extends Core_Model_Model {
     public function setParent(Core_Model_Model $parent) {
 
         $this->_parent = $parent;
+        return $this;
     }
 
     public function setItemsPerPage($pageSize) {
 
         $this->_pageSize = $pageSize;
+        return $this;
     }
 
     public function select($limit, $offset) {
@@ -33,8 +35,12 @@ class Base_Model_Pagination extends Core_Model_Model {
 
     public function getPage($pageNum) {
 
-        $table = $this->_parent->getTableName();
-        $sql = parent::select($table, null, null, null, null);
+        $itemsPerPage = $this->_pageSize;
+        $numRows = $this->getTotal();
+        $totalPages = ceil($numRows / $itemsPerPage);
+
+        $sql = $this->select();
+
 
     }
 
