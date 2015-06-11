@@ -16,8 +16,8 @@ class Blog_Controller_Page extends Core_Controller_Abstract {
 
     public function testAction() {
 
-        $model = Bootstrap::getModel('base/pagination');
-        $model->getPage();
+        $blogModel = Bootstrap::getModel('blog/blog');
+        $blogModel->getPaginator()->setItemsPerPage(4)->getPage();
     }
 
 
