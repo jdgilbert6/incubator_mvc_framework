@@ -10,7 +10,7 @@ class Base_Controller_Router_Base implements Core_Controller_Router_Interface {
         if(!$request->get('uri_parsed')) {
             $uri = $request->getData();
             $path = $uri['uri'];
-            $this->_path = str_replace('/', '', $path);
+            $this->_path = trim($path, '/');
         }
 
         if($this->matchUrl($this->_path)) {
