@@ -2,17 +2,12 @@
 
 class Base_Controller_Account extends Core_Controller_Abstract {
 
-//    public function registerAction() {
-//
-//        $view = Bootstrap::getView('base/welcome');
-//        return $view;
-//    }
+    public function registerAction() {
 
-    public function adminAction() {
-
-//        $page = Bootstrap::getView('page/page');
-//        $page->setTemplate('page/blog_admin');
-//        $page->renderTemplate();
+        $view = Bootstrap::getView('base/register');
+        $model = Bootstrap::getModel('base/access');
+        $model->userRegister();
+        return $view;
     }
 
     public function loginAction() {
@@ -21,8 +16,6 @@ class Base_Controller_Account extends Core_Controller_Abstract {
         $model = Bootstrap::getModel('base/access');
         $model->login();
         return $view;
-
-
     }
 
     public function logoutAction() {
